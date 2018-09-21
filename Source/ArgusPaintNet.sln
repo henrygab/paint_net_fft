@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArgusPaintNet.Shared", "ArgusPaintNet.Shared\ArgusPaintNet.Shared.csproj", "{81FC4087-22D6-4FE8-BA1E-7C4D05579F3C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StartUpDummy", "StartUpDummy\StartUpDummy.csproj", "{94C53CCC-F4C8-41DE-8070-3932802530FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArgusPaintNet.ReverseBlend", "ArgusPaintNet.ReverseBlend\ArgusPaintNet.ReverseBlend.csproj", "{FB45FB2E-FFC1-43F5-B0E1-591A4908CC12}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArgusPaintNet.FFT", "ArgusPaintNet.FFT\ArgusPaintNet.FFT.csproj", "{95ADCBC6-6EE3-4629-B429-8DB0C87CAC60}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArgusPaintNet.Convolution", "ArgusPaintNet.Convolution\ArgusPaintNet.Convolution.csproj", "{FDC23974-CB19-40B0-9292-BC4C8686A1FA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArgusPaintNet.Templates", "ArgusPaintNet.Templates\ArgusPaintNet.Templates.csproj", "{409FD605-ED45-4FAF-B4FC-6F73817F3946}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArgusPaintNet.EdgeDetection", "ArgusPaintNet.EdgeDetection\ArgusPaintNet.EdgeDetection.csproj", "{0738603C-5540-480C-92E0-259E721B89D4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{81FC4087-22D6-4FE8-BA1E-7C4D05579F3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81FC4087-22D6-4FE8-BA1E-7C4D05579F3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81FC4087-22D6-4FE8-BA1E-7C4D05579F3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81FC4087-22D6-4FE8-BA1E-7C4D05579F3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94C53CCC-F4C8-41DE-8070-3932802530FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94C53CCC-F4C8-41DE-8070-3932802530FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94C53CCC-F4C8-41DE-8070-3932802530FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94C53CCC-F4C8-41DE-8070-3932802530FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB45FB2E-FFC1-43F5-B0E1-591A4908CC12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB45FB2E-FFC1-43F5-B0E1-591A4908CC12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB45FB2E-FFC1-43F5-B0E1-591A4908CC12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB45FB2E-FFC1-43F5-B0E1-591A4908CC12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95ADCBC6-6EE3-4629-B429-8DB0C87CAC60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95ADCBC6-6EE3-4629-B429-8DB0C87CAC60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95ADCBC6-6EE3-4629-B429-8DB0C87CAC60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95ADCBC6-6EE3-4629-B429-8DB0C87CAC60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDC23974-CB19-40B0-9292-BC4C8686A1FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDC23974-CB19-40B0-9292-BC4C8686A1FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDC23974-CB19-40B0-9292-BC4C8686A1FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDC23974-CB19-40B0-9292-BC4C8686A1FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{409FD605-ED45-4FAF-B4FC-6F73817F3946}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{409FD605-ED45-4FAF-B4FC-6F73817F3946}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{409FD605-ED45-4FAF-B4FC-6F73817F3946}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{409FD605-ED45-4FAF-B4FC-6F73817F3946}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0738603C-5540-480C-92E0-259E721B89D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0738603C-5540-480C-92E0-259E721B89D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0738603C-5540-480C-92E0-259E721B89D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0738603C-5540-480C-92E0-259E721B89D4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
