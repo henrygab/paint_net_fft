@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using PaintDotNet;
 using System.Drawing;
 using PaintDotNet.Effects;
-using PaintDotNet;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;

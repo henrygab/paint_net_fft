@@ -64,7 +64,7 @@ namespace ArgusPaintNet.EdgeDetection
 
 		public static string StaticName { get { return "Edge Detection (Argus)"; } }
 		public static Image StaticIcon { get { return null; } }
-		public static string StaticSubMenuName { get { return "Stylize"; } }
+		public static string StaticSubMenuName { get { return SubmenuNames.Stylize; } }
 
 		public EdgeDetectionEffect()
 			: base(StaticName, StaticIcon, StaticSubMenuName, EffectFlags.Configurable)

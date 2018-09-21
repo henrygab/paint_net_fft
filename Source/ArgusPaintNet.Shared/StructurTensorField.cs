@@ -6,15 +6,14 @@ using System.Threading.Tasks;
 using System.Drawing;
 using PaintDotNet;
 using PaintDotNet.Effects;
-using PaintDotNet.Rendering;
 
 namespace ArgusPaintNet.Shared
 {
-	public struct TensorCharacteristics
+    public struct TensorCharacteristics
 	{
 		public float MinEigenvalue { get; set; }
 		public float MaxEigenvalue { get; set; }
-		public float DominantDirection { get; set; } 
+		public float DominantDirection { get; set; }
 	}
 
 	public struct StructurTensor
@@ -120,7 +119,7 @@ namespace ArgusPaintNet.Shared
 				this.Set22(x, y, value.Value22);
 			}
 		}
-	
+
 		public Rectangle GetBounds() { return new Rectangle(0, 0, this.Width, this.Height); }
 
 		public static async Task<StructurTensorField> FromIntensityImageAsync(IntensityImage image, Rectangle bounds, Matrix diffX = null, Matrix diffY = null, Effect callingEffect = null)
