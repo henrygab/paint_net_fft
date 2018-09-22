@@ -1,0 +1,6 @@
+Paint.NET v4.1.1
+
+File Version / Product Version / Assembly Version:
+    File Version     4.101.6828.39058
+    Product Version  4.101.6828.39058
+    Assembly Version 4.101.6828.39058
