@@ -1,0 +1,19 @@
+FFTW is a free collection of fast C routines for computing the
+Discrete Fourier Transform in one or more dimensions.  It includes
+complex, real, symmetric, and parallel transforms, and can handle
+arbitrary array sizes efficiently.  FFTW is typically faster than
+other publically-available FFT implementations, and is even
+competitive with vendor-tuned libraries.  (See our web page
+http://fftw.org/ for extensive benchmarks.)  To achieve this
+performance, FFTW uses novel code-generation and runtime
+self-optimization techniques (along with many other tricks).
+
+CONTACTS
+--------
+
+FFTW was written by Matteo Frigo and Steven G. Johnson.  You can
+contact them at fftw@fftw.org.  The latest version of FFTW,
+benchmarks, links, and other information can be found at the FFTW home
+page (http://www.fftw.org).  You can also sign up to the fftw-announce
+Google group to receive (infrequent) updates and information about new
+releases.
