@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>StartUpDummy</RootNamespace>
     <AssemblyName>StartUpDummy</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
     <StartAction>Program</StartAction>
@@ -64,9 +64,12 @@
       <Name>ArgusPaintNet.ReverseBlend</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy "$(TargetDir)\ArgusPaintNet.*.dll" "$(SolutionDir)\paint.net\Effects"</PostBuildEvent>
+    <PostBuildEvent>REM copy "$(TargetDir)\ArgusPaintNet.*.dll" "$(SolutionDir)\paint.net\Effects"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

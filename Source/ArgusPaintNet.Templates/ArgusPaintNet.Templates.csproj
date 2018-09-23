@@ -32,13 +32,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="PaintDotNet.Base">
-      <HintPath>..\paint.net\PaintDotNet.Base.dll</HintPath>
+      <HintPath>..\PaintDotNet\PaintDotNet.Base.dll</HintPath>
     </Reference>
     <Reference Include="PaintDotNet.Core">
-      <HintPath>..\paint.net\PaintDotNet.Core.dll</HintPath>
+      <HintPath>..\PaintDotNet\PaintDotNet.Core.dll</HintPath>
     </Reference>
     <Reference Include="PaintDotNet.Effects">
-      <HintPath>..\paint.net\PaintDotNet.Effects.dll</HintPath>
+      <HintPath>..\PaintDotNet\PaintDotNet.Effects.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
