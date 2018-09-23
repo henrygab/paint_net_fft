@@ -1,4 +1,5 @@
-These plugins (ArgusPaintNet) are licensed under the Microsoft Public License (Ms-PL)
+The source code for these plugins (ArgusPaintNet) are licensed under the Microsoft Public License (Ms-PL).
+For binaries in the depot, please review the corresponding license (e.g., stored with the binary).
 
 --------------------------------
 Microsoft Public License (Ms-PL)
