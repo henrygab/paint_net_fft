@@ -93,7 +93,7 @@ namespace ArgusPaintNet.Convolution
 		}
 	}
 #else
-	partial class ConvolutionEffectDialog : EffectConfigDialog<ConvolutionEffect,ConvolutionConfigEffectToken>
+    internal partial class ConvolutionEffectDialog : EffectConfigDialog<ConvolutionEffect,ConvolutionConfigEffectToken>
 	{
         private bool _isValidKernel = true;
         private Dictionary<string, ConvolutionConfigEffectToken> _dictPresets;
@@ -110,7 +110,7 @@ namespace ArgusPaintNet.Convolution
 			base.OnLoad(e);
 		}
 
-		void LoadPresets(string filename)
+        private void LoadPresets(string filename)
 		{
 			Preset[] presets = Preset.LoadFromFile(filename);
 			if (presets.Length < 1)
