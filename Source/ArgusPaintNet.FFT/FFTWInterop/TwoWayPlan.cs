@@ -10,8 +10,8 @@ namespace ArgusPaintNet.FFT.FFTWInterop
 {
     internal class TwoWayPlan : IDisposable 
 	{
-        private uint _width;
-        private uint _height;
+        private readonly uint _width;
+        private readonly uint _height;
         private IntPtr _in;
         private IntPtr _out;
         private IntPtr _planForwards;

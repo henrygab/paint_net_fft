@@ -15,7 +15,7 @@ namespace ArgusPaintNet.Shared
 {
 	public class TestEffect : Effect
 	{
-        private IPdnDataObject _clipboard;
+        private readonly IPdnDataObject _clipboard;
         private Surface _bitmap;
 		public TestEffect()
 			: base("Test", null, "ArgusTest")

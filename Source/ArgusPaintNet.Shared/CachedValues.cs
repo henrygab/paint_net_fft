@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,8 +10,8 @@ namespace ArgusPaintNet.Shared
 	public class CachedValues<T>
 	{
         private Dictionary<Rectangle, T[,]> _dict;
-        private Action<Rectangle, T[,]> _actionFill;
-        private int capacity;
+        private readonly Action<Rectangle, T[,]> _actionFill;
+        private readonly int capacity;
 
 		public CachedValues(int capacity, Action<Rectangle,T[,]> fillMethod)
 		{
