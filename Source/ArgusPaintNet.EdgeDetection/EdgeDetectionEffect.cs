@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -163,10 +163,9 @@ namespace ArgusPaintNet.EdgeDetection
 							if (((Form)sender).DialogResult != DialogResult.OK)
 								this._cancelToken.SignalCancelRequest();
 						};
-						var c = this._form.CancelButton as Control;
-						if (c != null)
-							c.Click += (sender, e) => { this._cancelToken.SignalCancelRequest(); };
-					}
+                        if (this._form.CancelButton is Control c)
+                            c.Click += (sender, e) => { this._cancelToken.SignalCancelRequest(); };
+                    }
 				}
 			}
 
