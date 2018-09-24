@@ -1,4 +1,4 @@
-﻿using PaintDotNet;
+using PaintDotNet;
 using PaintDotNet.Effects;
 using PaintDotNet.IndirectUI;
 using PaintDotNet.PropertySystem;
@@ -19,9 +19,9 @@ namespace ArgusPaintNet.FFT
 	[PluginSupportInfo(typeof(PluginSupportInfo))]
 	public class HighPassFilterEffect : BandPassFilterEffect
 	{
-		public new static string StaticName { get { return "High Pass Filter"; } }
-		public new static Image StaticImage { get { return null; } }
-		public new static string StaticSubMenuName { get { return "Signal Processing"; } }
+		public static new string StaticName { get { return "High Pass Filter"; } }
+		public static new Image StaticImage { get { return null; } }
+		public static new string StaticSubMenuName { get { return "Signal Processing"; } }
 
 		public HighPassFilterEffect()
 			: base(StaticName, StaticImage, StaticSubMenuName)
@@ -38,9 +38,9 @@ namespace ArgusPaintNet.FFT
 	[PluginSupportInfo(typeof(PluginSupportInfo))]
 	public class LowPassFilterEffect : BandPassFilterEffect
 	{
-		public new static string StaticName { get { return "Low Pass Filter"; } }
-		public new static Image StaticImage { get { return null; } }
-		public new static string StaticSubMenuName { get { return "Signal Processing"; } }
+		public static new string StaticName { get { return "Low Pass Filter"; } }
+		public static new Image StaticImage { get { return null; } }
+		public static new string StaticSubMenuName { get { return "Signal Processing"; } }
 
 		public LowPassFilterEffect()
 			: base(StaticName, StaticImage, StaticSubMenuName)
