@@ -1,4 +1,4 @@
-﻿using PaintDotNet;
+using PaintDotNet;
 using PaintDotNet.Effects;
 using PaintDotNet.IndirectUI;
 using PaintDotNet.PropertySystem;
@@ -16,19 +16,19 @@ using ArgusPaintNet.Shared;
 
 namespace ArgusPaintNet.FFT
 {
-	public enum ValueSources
-	{
-		Intensity,
-		Red,
-		Green,
-		Blue
-	}
+    public enum ValueSources
+    {
+        Intensity,
+        Red,
+        Green,
+        Blue
+    }
 
     internal static class ValueSourcesExtensions
-	{
-		public static Func<ColorBgra, double> GetGetValueFunc(this ValueSources valueSource)
-		{
-			if (valueSource == ValueSources.Red)
+    {
+        public static Func<ColorBgra, double> GetGetValueFunc(this ValueSources valueSource)
+        {
+            if (valueSource == ValueSources.Red)
             {
                 return (color) => { return color.R / 255.0; };
             }
@@ -45,11 +45,11 @@ namespace ArgusPaintNet.FFT
 
             //if (valueSource == ValueSources.Intensity)
             return (color) => { return color.GetIntensity(); };
-		}
+        }
 
-		public static Func<double, ColorBgra> GetGetColorFunc(this ValueSources valueSource)
-		{
-			if (valueSource  == ValueSources.Red)
+        public static Func<double, ColorBgra> GetGetColorFunc(this ValueSources valueSource)
+        {
+            if (valueSource == ValueSources.Red)
             {
                 return (red) => { return ColorBgra.FromBgr(0, 0, (byte)Math.Round(255 * red)); };
             }
@@ -66,10 +66,10 @@ namespace ArgusPaintNet.FFT
 
             //if (valueSource == ValueSources.Intensity)
             return (intensity) =>
-			{
-				byte i = (byte)Math.Round(255 * intensity);
-				return ColorBgra.FromBgr(i, i, i);
-			};
-		}
-	}
+            {
+                byte i = (byte)Math.Round(255 * intensity);
+                return ColorBgra.FromBgr(i, i, i);
+            };
+        }
+    }
 }
