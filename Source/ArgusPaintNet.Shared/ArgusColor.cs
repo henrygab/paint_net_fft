@@ -32,15 +32,15 @@ namespace ArgusPaintNet.Shared
 		#endregion
 
 		#region Properties
-		public byte R { get { return this.r; } set { this.r = value; } }
-		public byte G { get { return this.g; } set { this.g = value; } }
-		public byte B { get { return this.b; } set { this.b = value; } }
-		public byte A { get { return this.a; } set { this.a = value; } }
-		public int ARGB { get { return (int)this.argb; } }
-		#endregion
+		public byte R { get => this.r; set => this.r = value; }
+        public byte G { get => this.g; set => this.g = value; }
+        public byte B { get => this.b; set => this.b = value; }
+        public byte A { get => this.a; set => this.a = value; }
+        public int ARGB => (int)this.argb;
+        #endregion
 
-		#region Constructors
-		public ArgusColor(byte r, byte g, byte b, byte a = 255)
+        #region Constructors
+        public ArgusColor(byte r, byte g, byte b, byte a = 255)
 			: this()
 		{
 			this.r = r;
