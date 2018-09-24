@@ -8,8 +8,8 @@ using PaintDotNet;
 
 namespace ArgusPaintNet.Templates
 {
-	public class PDNPluginSupportInfo : IPluginSupportInfo
-	{
+    public class PDNPluginSupportInfo : IPluginSupportInfo
+    {
         public string Author => "Argus Magnus";
         public string Copyright => ((AssemblyCopyrightAttribute)base.GetType().Assembly.GetCustomAttributes(typeof(AssemblyCopyrightAttribute), false)[0]).Copyright;
 
