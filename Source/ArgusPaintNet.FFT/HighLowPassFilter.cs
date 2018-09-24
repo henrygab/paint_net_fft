@@ -158,26 +158,37 @@ namespace ArgusPaintNet.FFT
 		{
 			RectInt32 bounds = this.EnvironmentParameters.GetSelection(this.EnvironmentParameters.SourceSurface.Bounds).GetBoundsRectInt32();
 			if (this._enumDropDown == null)
-				this._enumDropDown = new EnumDropDownValues<ValueSources>();
-			this._valueSource = this._enumDropDown.GetEnumMember(newToken.GetProperty<StaticListChoiceProperty>(PropertyNames.ValueSource).Value);
+            {
+                this._enumDropDown = new EnumDropDownValues<ValueSources>();
+            }
+
+            this._valueSource = this._enumDropDown.GetEnumMember(newToken.GetProperty<StaticListChoiceProperty>(PropertyNames.ValueSource).Value);
 
 			this._linkFrequencies = newToken.GetProperty<BooleanProperty>(PropertyNames.LinkCutoffFrequencies).Value;
 			if (this.ShowSlidersLowPass)
 			{
 				this._lowPassX = newToken.GetProperty<DoubleProperty>(PropertyNames.CutoffFrequencyLowPassX).Value;
 				if (this._linkFrequencies)
-					this._lowPassY = this._lowPassX / bounds.Width * bounds.Height;
-				else
-					this._lowPassY = newToken.GetProperty<DoubleProperty>(PropertyNames.CutoffFrequencyLowPassY).Value;
-			}
+                {
+                    this._lowPassY = this._lowPassX / bounds.Width * bounds.Height;
+                }
+                else
+                {
+                    this._lowPassY = newToken.GetProperty<DoubleProperty>(PropertyNames.CutoffFrequencyLowPassY).Value;
+                }
+            }
 			if (this.ShowSlidersHighPass)
 			{
 				this._highPassX = newToken.GetProperty<DoubleProperty>(PropertyNames.CutoffFrequencyHighPassX).Value;
 				if (this._linkFrequencies)
-					this._highPassY = this._highPassX / bounds.Width * bounds.Height;
-				else
-					this._highPassY = newToken.GetProperty<DoubleProperty>(PropertyNames.CutoffFrequencyHighPassY).Value;
-			}
+                {
+                    this._highPassY = this._highPassX / bounds.Width * bounds.Height;
+                }
+                else
+                {
+                    this._highPassY = newToken.GetProperty<DoubleProperty>(PropertyNames.CutoffFrequencyHighPassY).Value;
+                }
+            }
 		}
 
 		protected override void OnRenderCore(Rectangle[] renderRects, int startIndex, int length)
@@ -190,15 +201,19 @@ namespace ArgusPaintNet.FFT
 			lock (this)
 			{
 				if (this._fftPlan == null)
-					this._fftPlan = TwoWayPlan.GetInstance(bounds.Width, bounds.Height);
-			}
+                {
+                    this._fftPlan = TwoWayPlan.GetInstance(bounds.Width, bounds.Height);
+                }
+            }
 
 			Func<ColorBgra, double> getValue = this._valueSource.GetGetValueFunc();
 
 			if (this.IsCancelRequested)
-				return;
+            {
+                return;
+            }
 
-			this._fftPlan.ClearData();
+            this._fftPlan.ClearData();
 
 			Parallel.For(0, renderRects.Length, (i, loopStateI) =>
 			{
@@ -225,9 +240,11 @@ namespace ArgusPaintNet.FFT
 			});
 
 			if (this.IsCancelRequested)
-				return;
+            {
+                return;
+            }
 
-			this._fftPlan.ExecuteForwards();
+            this._fftPlan.ExecuteForwards();
 
 			Parallel.For(0, this._fftPlan.Height, (y, loopState) =>
 			{
@@ -248,14 +265,18 @@ namespace ArgusPaintNet.FFT
 			});
 
 			if (this.IsCancelRequested)
-				return;
+            {
+                return;
+            }
 
-			this._fftPlan.ExecuteBackwards();
+            this._fftPlan.ExecuteBackwards();
 
 			if (this.IsCancelRequested)
-				return;
+            {
+                return;
+            }
 
-			Func<double, ColorBgra> getColor = this._valueSource.GetGetColorFunc();
+            Func<double, ColorBgra> getColor = this._valueSource.GetGetColorFunc();
 			double factor = this._fftPlan.NormalizationConstantTwoWays;
 
 			Parallel.For(0, renderRects.Length, (i, loopStateI) =>

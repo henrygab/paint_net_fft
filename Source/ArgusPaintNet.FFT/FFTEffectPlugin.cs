@@ -38,10 +38,16 @@ namespace ArgusPaintNet.FFT
 		protected override void OnDispose(bool disposing)
 		{
 			if (this._fftPlanForwards != null)
-				this._fftPlanForwards.Dispose();
-			if (this._fftPlanBackwards != null)
-				this._fftPlanBackwards.Dispose();
-			base.OnDispose(disposing);
+            {
+                this._fftPlanForwards.Dispose();
+            }
+
+            if (this._fftPlanBackwards != null)
+            {
+                this._fftPlanBackwards.Dispose();
+            }
+
+            base.OnDispose(disposing);
 		}
 
 		protected override PropertyCollection OnCreatePropertyCollectionCore()
@@ -62,8 +68,11 @@ namespace ArgusPaintNet.FFT
 		protected override void OnSetRenderInfoCore(PropertyBasedEffectConfigToken newToken, RenderArgs dstArgs, RenderArgs srcArgs)
 		{
 			if (this._enumDropDown == null)
-				this._enumDropDown = new EnumDropDownValues<ValueSources>();
-			this._isForwards = !newToken.GetProperty<BooleanProperty>(PropertyNames.FFTDirectionIsForward).Value;
+            {
+                this._enumDropDown = new EnumDropDownValues<ValueSources>();
+            }
+
+            this._isForwards = !newToken.GetProperty<BooleanProperty>(PropertyNames.FFTDirectionIsForward).Value;
 			this._valueSource = this._enumDropDown.GetEnumMember(newToken.GetProperty<StaticListChoiceProperty>(PropertyNames.ValueSource).Value);
 		}
 
@@ -79,19 +88,25 @@ namespace ArgusPaintNet.FFT
 
 
 			if (this.IsCancelRequested)
-				return;
+            {
+                return;
+            }
 
-			this.SetInput(src, renderRects, bounds, isForwards);
-
-			if (this.IsCancelRequested)
-				return;
-
-			this.ExecutePlan(isForwards);
+            this.SetInput(src, renderRects, bounds, isForwards);
 
 			if (this.IsCancelRequested)
-				return;
+            {
+                return;
+            }
 
-			this.RenderOutput(dst, renderRects, bounds, isForwards);
+            this.ExecutePlan(isForwards);
+
+			if (this.IsCancelRequested)
+            {
+                return;
+            }
+
+            this.RenderOutput(dst, renderRects, bounds, isForwards);
 		}
 
         #region Helper Methods
@@ -103,49 +118,67 @@ namespace ArgusPaintNet.FFT
 				lock (this)
 				{
 					if (this._fftPlanForwards == null)
-						this._fftPlanForwards = R2ComplexPlan.GetInstance(bounds.Width, bounds.Height);
-				}
+                    {
+                        this._fftPlanForwards = R2ComplexPlan.GetInstance(bounds.Width, bounds.Height);
+                    }
+                }
 			}
 			else
 			{
 				lock (this)
 				{
 					if (this._fftPlanBackwards == null)
-						this._fftPlanBackwards = ComplexPlan.GetInstance(bounds.Width, bounds.Height, true);
-				}
+                    {
+                        this._fftPlanBackwards = ComplexPlan.GetInstance(bounds.Width, bounds.Height, true);
+                    }
+                }
 			}
 		}
 
         private void ExecutePlan(bool isForwards)
 		{
 			if (isForwards)
-				this._fftPlanForwards.Execute();
-			else
-				this._fftPlanBackwards.Execute();
-		}
+            {
+                this._fftPlanForwards.Execute();
+            }
+            else
+            {
+                this._fftPlanBackwards.Execute();
+            }
+        }
 
         private void SetInput(Surface src, Rectangle[] rects, RectInt32 bounds, bool isForwards)
 		{
 			if (isForwards)
-				this.SetInputForwards(src, rects, bounds);
-			else
-				this.SetInputBackwards(src, rects, bounds);
-		}
+            {
+                this.SetInputForwards(src, rects, bounds);
+            }
+            else
+            {
+                this.SetInputBackwards(src, rects, bounds);
+            }
+        }
 
         private void RenderOutput(Surface dst, Rectangle[] rects, RectInt32 bounds, bool isForwards)
 		{
 			if (isForwards)
-				this.RenderOutputForwards(dst, rects, bounds);
-			else
-				this.RenderOutputBackwards(dst, rects, bounds);
-		}
+            {
+                this.RenderOutputForwards(dst, rects, bounds);
+            }
+            else
+            {
+                this.RenderOutputBackwards(dst, rects, bounds);
+            }
+        }
 
         private void SetInputForwards(Surface src, Rectangle[] rects, RectInt32 bounds)
 		{
 			if (this.IsCancelRequested)
-				return;
+            {
+                return;
+            }
 
-			Func<ColorBgra, double> getValue = this._valueSource.GetGetValueFunc();
+            Func<ColorBgra, double> getValue = this._valueSource.GetGetValueFunc();
 
 			Parallel.For(0, rects.Length, (i, loopStateI) =>
 			{
@@ -179,9 +212,11 @@ namespace ArgusPaintNet.FFT
 			object _lock = new object();
 
 			if (this.IsCancelRequested)
-				return;
+            {
+                return;
+            }
 
-			Parallel.For(0, rects.Length, (i, loopStateI) =>
+            Parallel.For(0, rects.Length, (i, loopStateI) =>
 			{
 				if (this.IsCancelRequested)
 				{
@@ -209,9 +244,11 @@ namespace ArgusPaintNet.FFT
 			double factor = GetFactor(maxValue);
 
 			if (this.IsCancelRequested)
-				return;
+            {
+                return;
+            }
 
-			Parallel.For(0, rects.Length, (i, loopStateI) =>
+            Parallel.For(0, rects.Length, (i, loopStateI) =>
 			{
 				if (this.IsCancelRequested)
 				{
@@ -230,11 +267,17 @@ namespace ArgusPaintNet.FFT
 					{
 						int fftx = x - center.X;
 						if (fftx < 0)
-							fftx += bounds.Width;
-						int ffty = y - center.Y;
+                        {
+                            fftx += bounds.Width;
+                        }
+
+                        int ffty = y - center.Y;
 						if (ffty < 0)
-							ffty += bounds.Height;
-						Complex val = this._fftPlanForwards.GetOutput(fftx, ffty);
+                        {
+                            ffty += bounds.Height;
+                        }
+
+                        Complex val = this._fftPlanForwards.GetOutput(fftx, ffty);
 						dst[x, y] = ComplexToColor(val, factor);
 					}
 				});
@@ -244,9 +287,11 @@ namespace ArgusPaintNet.FFT
         private void SetInputBackwards(Surface src, Rectangle[] rects, RectInt32 bounds)
 		{
 			if (this.IsCancelRequested)
-				return;
+            {
+                return;
+            }
 
-			var center = new PointInt32(bounds.Left + bounds.Width / 2, bounds.Top + bounds.Height / 2);
+            var center = new PointInt32(bounds.Left + bounds.Width / 2, bounds.Top + bounds.Height / 2);
 
 			Parallel.For(0, rects.Length, (i, loopStateI) =>
 			{
@@ -269,11 +314,17 @@ namespace ArgusPaintNet.FFT
 						Complex val = ColorToComplex(color);
 						int fftx = x - center.X;
 						if (fftx < 0)
-							fftx += bounds.Width;
-						int ffty = y - center.Y;
+                        {
+                            fftx += bounds.Width;
+                        }
+
+                        int ffty = y - center.Y;
 						if (ffty < 0)
-							ffty += bounds.Height;
-						this._fftPlanBackwards.SetInput(fftx, ffty, val);
+                        {
+                            ffty += bounds.Height;
+                        }
+
+                        this._fftPlanBackwards.SetInput(fftx, ffty, val);
 					}
 				});
 			});
@@ -287,9 +338,11 @@ namespace ArgusPaintNet.FFT
 			object _lock = new object();
 
 			if (this.IsCancelRequested)
-				return;
+            {
+                return;
+            }
 
-			Parallel.For(0, rects.Length, (i, loopStateI) =>
+            Parallel.For(0, rects.Length, (i, loopStateI) =>
 			{
 				if (this.IsCancelRequested)
 				{
@@ -318,9 +371,11 @@ namespace ArgusPaintNet.FFT
 			Func<double, ColorBgra> getColor = this._valueSource.GetGetColorFunc();
 
 			if (this.IsCancelRequested)
-				return;
+            {
+                return;
+            }
 
-			Parallel.For(0, rects.Length, (i, loopStateI) =>
+            Parallel.For(0, rects.Length, (i, loopStateI) =>
 			{
 				if (this.IsCancelRequested)
 				{
@@ -368,8 +423,11 @@ namespace ArgusPaintNet.FFT
 			//uint m = RetrieveValue2((val.Bgra & 0x00FFFF00) >> 8);
 			uint m = (val.Bgra & 0x00FFFF00) >> 8;
 			if (val.A < 255)
-				m = 0;
-			double phase = -(p * 2 * Math.PI / 255.0 - Math.PI);
+            {
+                m = 0;
+            }
+
+            double phase = -(p * 2 * Math.PI / 255.0 - Math.PI);
 			double mag = m * ColorToComplex_NormFactor;
 			return Complex.FromPolarCoordinates(mag, phase);
 		}

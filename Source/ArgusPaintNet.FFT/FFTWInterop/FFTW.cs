@@ -69,11 +69,15 @@ namespace ArgusPaintNet.FFT.FFTWInterop
 		{
 			string path;
 			if (Environment.Is64BitProcess)
-				path = "Effects/NativeBinaries/x64";
-			else
-				path = "Effects/NativeBinaries/x86";
+            {
+                path = "Effects/NativeBinaries/x64";
+            }
+            else
+            {
+                path = "Effects/NativeBinaries/x86";
+            }
 
-			path = Path.Combine(Environment.CurrentDirectory, path);
+            path = Path.Combine(Environment.CurrentDirectory, path);
             NativeMethods.SetDllDirectory(path);
 
 			IsAvailable = true;
@@ -86,9 +90,11 @@ namespace ArgusPaintNet.FFT.FFTWInterop
 
 				path = Path.Combine(Path.GetTempPath(), WisdomFile);
 				if (File.Exists(path))
+                {
                     NativeMethods.fftw_import_wisdom_from_filename(path);
+                }
 
-				Application.ApplicationExit += (sender, e) => { fftw_export_wisdom(); };
+                Application.ApplicationExit += (sender, e) => { fftw_export_wisdom(); };
 			}
 		}
 		#region Memory Management
@@ -139,8 +145,11 @@ namespace ArgusPaintNet.FFT.FFTWInterop
 				IntPtr outComplex = NativeMethods.fftw_alloc_complex(width * height);
 				int sign = -1;
 				if (forward)
-					sign = 1;
-				IntPtr plan = NativeMethods.fftw_plan_dft_2d(width, height, inComplex, outComplex, sign);
+                {
+                    sign = 1;
+                }
+
+                IntPtr plan = NativeMethods.fftw_plan_dft_2d(width, height, inComplex, outComplex, sign);
 				return new ComplexPlan(width, height, inComplex, outComplex, plan);
 			}
 		}

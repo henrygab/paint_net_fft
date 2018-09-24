@@ -45,15 +45,21 @@ namespace ArgusPaintNet.FFT
 		protected override void OnSetRenderInfo(PropertyBasedEffectConfigToken newToken, RenderArgs dstArgs, RenderArgs srcArgs)
 		{
 			if (FFTW.IsAvailable)
-				this.OnSetRenderInfoCore(newToken, dstArgs, srcArgs);
-			base.OnSetRenderInfo(newToken, dstArgs, srcArgs);
+            {
+                this.OnSetRenderInfoCore(newToken, dstArgs, srcArgs);
+            }
+
+            base.OnSetRenderInfo(newToken, dstArgs, srcArgs);
 		}
 
 		protected override void OnRender(Rectangle[] renderRects, int startIndex, int length)
 		{
 			if (length < 1 || this.IsCancelRequested | !FFTW.IsAvailable)
-				return;
-			this.OnRenderCore(renderRects, startIndex, length);
+            {
+                return;
+            }
+
+            this.OnRenderCore(renderRects, startIndex, length);
 		}
 
 		protected abstract PropertyCollection OnCreatePropertyCollectionCore();

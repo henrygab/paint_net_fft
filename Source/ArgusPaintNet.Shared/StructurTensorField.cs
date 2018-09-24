@@ -129,10 +129,16 @@ namespace ArgusPaintNet.Shared
 		public static StructurTensorField FromIntensityImage(IntensityImage image, Rectangle bounds, Matrix diffX = null, Matrix diffY = null, Effect callingEffect = null)
 		{
 			if (diffX == null)
-				diffX = new float[,] { { -1, -8, 0, 8, 1 } };
-			if (diffY == null)
-				diffY = diffX.GetTransposed();
-			var RetVal = new StructurTensorField(bounds.Width, bounds.Height, callingEffect);
+            {
+                diffX = new float[,] { { -1, -8, 0, 8, 1 } };
+            }
+
+            if (diffY == null)
+            {
+                diffY = diffX.GetTransposed();
+            }
+
+            var RetVal = new StructurTensorField(bounds.Width, bounds.Height, callingEffect);
 			Parallel.For(bounds.Left, bounds.Right, (x, loopState) =>
 			{
 				if (RetVal.IsCancelRequested)
@@ -145,8 +151,11 @@ namespace ArgusPaintNet.Shared
 				for (int y = bounds.Top; y < bounds.Bottom; y++)
 				{
 					if (RetVal.IsCancelRequested)
-						return;
-					float Ix = image.Convolve(x, y, diffX);
+                    {
+                        return;
+                    }
+
+                    float Ix = image.Convolve(x, y, diffX);
 					float Iy = image.Convolve(x, y, diffY);
 					int ty = y - bounds.Top;
 					RetVal.Set11(tx, ty, Ix * Ix);
@@ -196,19 +205,27 @@ namespace ArgusPaintNet.Shared
 			{
 				int sx = x + kx - kernel.ColumnCount / 2;
 				if (sx < 0)
-					sx = -sx;
-				else if (sx >= this.Width)
-					sx = 2 * (this.Width-1) - sx;
+                {
+                    sx = -sx;
+                }
+                else if (sx >= this.Width)
+                {
+                    sx = 2 * (this.Width-1) - sx;
+                }
 
-				for (int ky = 0; ky < kernel.RowCount; ky++)
+                for (int ky = 0; ky < kernel.RowCount; ky++)
 				{
 					int sy = y + ky - kernel.RowCount / 2;
 					if (sy < 0)
-						sy = -sy;
-					else if (sy >= this.Height)
-						sy = 2 * (this.Height-1) - sy;
+                    {
+                        sy = -sy;
+                    }
+                    else if (sy >= this.Height)
+                    {
+                        sy = 2 * (this.Height-1) - sy;
+                    }
 
-					float factor = kernel[ky, kx];
+                    float factor = kernel[ky, kx];
 					RetVal.Value11 += this.Get11(sx, sy) * factor;
 					RetVal.Value12 += this.Get12(sx, sy) * factor;
 					RetVal.Value22 += this.Get22(sx, sy) * factor;
@@ -237,8 +254,11 @@ namespace ArgusPaintNet.Shared
 				for (int y = bounds.Top; y < bounds.Bottom; y++)
 				{
 					if (RetVal.IsCancelRequested)
-						return;
-					int ty = y - bounds.Top;
+                    {
+                        return;
+                    }
+
+                    int ty = y - bounds.Top;
 					RetVal[tx, ty] = this.Convolve(x, y, kernel);
 				}
 			});
@@ -263,8 +283,11 @@ namespace ArgusPaintNet.Shared
 		public Pair<float,float> GetMeanAndStdDeviationOfMaxEV(Rectangle[] rois = null, float threshold = 0.001f)
 		{
 			if (rois == null)
-				rois = new Rectangle[] { this.GetBounds() };
-			object _lock = new object();
+            {
+                rois = new Rectangle[] { this.GetBounds() };
+            }
+
+            object _lock = new object();
 			double val = 0;
 			double valSq = 0;
 			long n_tot = 0;
@@ -292,9 +315,11 @@ namespace ArgusPaintNet.Shared
 					{
 						float maxEv = this[x, y].GetMaxEigenvalue();
 						if (maxEv < threshold)
-							continue;
+                        {
+                            continue;
+                        }
 
-						double diff = maxEv - K;
+                        double diff = maxEv - K;
 						v += diff;
 						vSq += diff * diff;
 						n++;

@@ -35,8 +35,11 @@ namespace ArgusPaintNet.Shared
             };
             inpBox.lText.Text = text;
 			if (inpBox.ShowDialog() == DialogResult.OK)
-				return inpBox.tbInput.Text;
-			return null;
+            {
+                return inpBox.tbInput.Text;
+            }
+
+            return null;
 		}
 	}
 }

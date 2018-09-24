@@ -69,14 +69,18 @@ namespace ArgusPaintNet.Templates
 		protected override void OnRender(Rectangle[] renderRects, int startIndex, int length)
 		{
 			if (length < 1)
-				return;
+            {
+                return;
+            }
 
-			Surface srcSurface = this.SrcArgs.Surface;
+            Surface srcSurface = this.SrcArgs.Surface;
 			Surface dstSurface = this.DstArgs.Surface;
 
 			foreach (Rectangle rect in renderRects)
-				this.Render(rect, srcSurface, dstSurface);
-		}
+            {
+                this.Render(rect, srcSurface, dstSurface);
+            }
+        }
 
         private void Render(Rectangle rect, Surface srcSurface, Surface dstSurface)
 		{

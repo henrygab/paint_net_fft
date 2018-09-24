@@ -114,12 +114,17 @@ namespace ArgusPaintNet.Convolution
 		{
 			Preset[] presets = Preset.LoadFromFile(filename);
 			if (presets.Length < 1)
-				presets = Preset.DefaultPresets;
-			this._dictPresets = presets.ToDictionary();
+            {
+                presets = Preset.DefaultPresets;
+            }
+
+            this._dictPresets = presets.ToDictionary();
 			this.lbPresets.Items.Clear();
 			foreach (string name in this._dictPresets.Keys)
-				this.lbPresets.Items.Add(name);
-		}
+            {
+                this.lbPresets.Items.Add(name);
+            }
+        }
 
 		protected override ConvolutionConfigEffectToken CreateInitialToken()
 		{
@@ -149,20 +154,27 @@ namespace ArgusPaintNet.Convolution
 		private void lbPresets_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			if (this.lbPresets.SelectedIndex < 0)
-				return;
+            {
+                return;
+            }
 
-			string name = this.lbPresets.SelectedItem.ToString();
+            string name = this.lbPresets.SelectedItem.ToString();
 			ConvolutionConfigEffectToken token;
 			if (this._dictPresets.TryGetValue(name, out token))
-				this.InitDialogFromToken(token);
-		}
+            {
+                this.InitDialogFromToken(token);
+            }
+        }
 
 		private void lbPresets_Format(object sender, ListControlConvertEventArgs e)
 		{
 			string str = Properties.Resources.ResourceManager.GetString("ConvPresetName" + e.ListItem.ToString());
 			if (string.IsNullOrEmpty(str))
-				str = e.ListItem.ToString();
-			e.Value = str;
+            {
+                str = e.ListItem.ToString();
+            }
+
+            e.Value = str;
 		}
 
 		private void tbKernel_TextChanged(object sender, EventArgs e)
@@ -224,8 +236,11 @@ namespace ArgusPaintNet.Convolution
 			}
 			string name = InputBox.Show("Preset Name:", "Prest Name");
 			if (string.IsNullOrEmpty(name))
-				return;
-			if (this._dictPresets.ContainsKey(name))
+            {
+                return;
+            }
+
+            if (this._dictPresets.ContainsKey(name))
 			{
 				MessageBox.Show(string.Format("Name \"{0}\" is already in use.", name), "Error");
 				return;
@@ -247,8 +262,11 @@ namespace ArgusPaintNet.Convolution
                 Filter = "Convolution Presets (*.xml)|*.xml"
             };
             if (ofd.ShowDialog() != DialogResult.OK)
-				return;
-			this.LoadPresets(ofd.FileName);
+            {
+                return;
+            }
+
+            this.LoadPresets(ofd.FileName);
 		}
 
 		private void tsmiSavePresets_Click(object sender, EventArgs e)
@@ -258,16 +276,21 @@ namespace ArgusPaintNet.Convolution
                 Filter = "Convolution Presets (*.xml)|*.xml"
             };
             if (sfd.ShowDialog() != DialogResult.OK)
-				return;
-			Preset.SaveToFile(sfd.FileName, this._dictPresets.ToPresets());
+            {
+                return;
+            }
+
+            Preset.SaveToFile(sfd.FileName, this._dictPresets.ToPresets());
 		}
 
 		private void lbPresets_KeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.KeyCode != Keys.Delete || this.lbPresets.SelectedIndex < 0)
-				return;
+            {
+                return;
+            }
 
-			string name = this.lbPresets.SelectedItem.ToString();
+            string name = this.lbPresets.SelectedItem.ToString();
 			this.lbPresets.Items.RemoveAt(this.lbPresets.SelectedIndex);
 			this._dictPresets.Remove(name);
 		}

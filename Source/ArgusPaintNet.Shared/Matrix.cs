@@ -40,10 +40,16 @@ namespace ArgusPaintNet.Shared
 		public Matrix(int rows, int columns, float[] values)
 		{
 			if (values == null)
-				throw new ArgumentNullException();
-			if (rows * columns != values.Length)
-				throw new ArgumentException("values must contain rows*columns elements.");
-			this._matrix = new float[rows, columns];
+            {
+                throw new ArgumentNullException();
+            }
+
+            if (rows * columns != values.Length)
+            {
+                throw new ArgumentException("values must contain rows*columns elements.");
+            }
+
+            this._matrix = new float[rows, columns];
 			Buffer.BlockCopy(values, 0, this._matrix, 0, values.Length * sizeof(float));
 		}
 
@@ -65,10 +71,14 @@ namespace ArgusPaintNet.Shared
 			foreach (double val in this._matrix)
 			{
 				if (val < 0)
-					neg += val;
-				else
-					pos += val;
-			}
+                {
+                    neg += val;
+                }
+                else
+                {
+                    pos += val;
+                }
+            }
 
 			double factor = 1;
 			double sum = Math.Abs(neg + pos);
@@ -82,8 +92,11 @@ namespace ArgusPaintNet.Shared
 			}
 
 			if (factor == 0 || double.IsNaN(factor) || double.IsInfinity(factor))
-				factor = 1;
-			return (float)factor;
+            {
+                factor = 1;
+            }
+
+            return (float)factor;
 		}
 
 		public static implicit operator Matrix(float[,] matrix)
@@ -115,8 +128,10 @@ namespace ArgusPaintNet.Shared
 				{
 					int d = len[c] - str[r, c].Length;
 					if (d > 0)
-						str[r, c] = new string(' ', d) + str[r, c];
-				}
+                    {
+                        str[r, c] = new string(' ', d) + str[r, c];
+                    }
+                }
 			}
 
 			var sb = new StringBuilder();
@@ -144,11 +159,17 @@ namespace ArgusPaintNet.Shared
 			string[] rows = this.RowsToString(formatProvider);
 			int capacity = 0;
 			for (int i = 0; i < rows.Length; i++)
-				capacity += rows[i].Length + 4;
-			var sb = new StringBuilder(capacity);
+            {
+                capacity += rows[i].Length + 4;
+            }
+
+            var sb = new StringBuilder(capacity);
 			foreach (string row in rows)
-				sb.AppendLine(row);
-			return sb.ToString().TrimEnd();
+            {
+                sb.AppendLine(row);
+            }
+
+            return sb.ToString().TrimEnd();
 		}
 
 		public override string ToString()
@@ -160,22 +181,31 @@ namespace ArgusPaintNet.Shared
 		{
 			value = null;
 			if (rows == null || rows.Length < 1)
-				return false;
+            {
+                return false;
+            }
 
-			for (int r = 0; r < rows.Length; r++)
+            for (int r = 0; r < rows.Length; r++)
 			{
 				string[] cells = rows[r].Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 				if (value == null)
-					value = new Matrix(rows.Length, cells.Length);
-				else if (value.ColumnCount != cells.Length)
-					return false;
+                {
+                    value = new Matrix(rows.Length, cells.Length);
+                }
+                else if (value.ColumnCount != cells.Length)
+                {
+                    return false;
+                }
 
-				for (int c = 0; c < cells.Length; c++)
+                for (int c = 0; c < cells.Length; c++)
 				{
 					float val;
 					if (!float.TryParse(cells[c].Trim(), NumberStyles.Number, formatProvider, out val))
-						return false;
-					value[r, c] = val;
+                    {
+                        return false;
+                    }
+
+                    value[r, c] = val;
 				}
 			}
 			return true;
@@ -215,16 +245,23 @@ namespace ArgusPaintNet.Shared
 			while (reader.NodeType != XmlNodeType.EndElement || reader.LocalName != name)
 			{
 				if (reader.NodeType == XmlNodeType.Element && reader.LocalName == "Row")
-					rows.Add(reader.ReadElementContentAsString());
-				else
-					reader.Read();
-			}
+                {
+                    rows.Add(reader.ReadElementContentAsString());
+                }
+                else
+                {
+                    reader.Read();
+                }
+            }
 			reader.ReadEndElement();
 
 			Matrix matrix;
 			if (!Matrix.TryParse(rows.ToArray(), NumberFormatInfo.InvariantInfo, out matrix))
-				throw new XmlException("Xml content cannot be converted to Matrix.");
-			this._matrix = matrix._matrix;
+            {
+                throw new XmlException("Xml content cannot be converted to Matrix.");
+            }
+
+            this._matrix = matrix._matrix;
 		}
 
 		public void Multiply(float factor)
@@ -253,16 +290,22 @@ namespace ArgusPaintNet.Shared
 		public static Matrix operator*(Matrix m1, Matrix m2)
 		{
 			if (m1.ColumnCount != m2.RowCount)
-				throw new ArgumentException("m1.ColumnCount must be equal to m2.RowCount.");
-			var RetVal = new Matrix(m1.RowCount, m2.ColumnCount);
+            {
+                throw new ArgumentException("m1.ColumnCount must be equal to m2.RowCount.");
+            }
+
+            var RetVal = new Matrix(m1.RowCount, m2.ColumnCount);
 			for (int row = 0; row < RetVal.RowCount; row++)
 			{
 				for (int col = 0; col < RetVal.ColumnCount; col++)
 				{
 					float value = 0;
 					for (int i = 0; i < m1.ColumnCount; i++)
-						value += m1[row, i] * m2[i, col];
-					RetVal[row, col] = value;
+                    {
+                        value += m1[row, i] * m2[i, col];
+                    }
+
+                    RetVal[row, col] = value;
 				}
 			}
 			return RetVal;
@@ -271,9 +314,11 @@ namespace ArgusPaintNet.Shared
 		public void Add(Matrix m)
 		{
 			if (this.ColumnCount != m.ColumnCount || this.RowCount != m.ColumnCount)
-				throw new ArgumentException("Dimension mismatch.");
+            {
+                throw new ArgumentException("Dimension mismatch.");
+            }
 
-			for (int row = 0; row < this.RowCount; row++)
+            for (int row = 0; row < this.RowCount; row++)
 			{
 				for (int col = 0; col < this.ColumnCount; col++)
 				{
@@ -285,9 +330,11 @@ namespace ArgusPaintNet.Shared
 		public static Matrix operator+(Matrix m1,Matrix m2)
 		{
 			if (m1.ColumnCount != m2.ColumnCount || m1.RowCount != m2.ColumnCount)
-				throw new ArgumentException("Dimension mismatch.");
+            {
+                throw new ArgumentException("Dimension mismatch.");
+            }
 
-			var RetVal = new Matrix(m1);
+            var RetVal = new Matrix(m1);
 			RetVal.Add(m2);
 			return RetVal;
 		}
@@ -295,9 +342,11 @@ namespace ArgusPaintNet.Shared
 		public void Subtract(Matrix m)
 		{
 			if (this.ColumnCount != m.ColumnCount || this.RowCount != m.ColumnCount)
-				throw new ArgumentException("Dimension mismatch.");
+            {
+                throw new ArgumentException("Dimension mismatch.");
+            }
 
-			for (int row = 0; row < this.RowCount; row++)
+            for (int row = 0; row < this.RowCount; row++)
 			{
 				for (int col = 0; col < this.ColumnCount; col++)
 				{
@@ -309,9 +358,11 @@ namespace ArgusPaintNet.Shared
 		public static Matrix operator -(Matrix m1, Matrix m2)
 		{
 			if (m1.ColumnCount != m2.ColumnCount || m1.RowCount != m2.ColumnCount)
-				throw new ArgumentException("Dimension mismatch.");
+            {
+                throw new ArgumentException("Dimension mismatch.");
+            }
 
-			var RetVal = new Matrix(m1);
+            var RetVal = new Matrix(m1);
 			RetVal.Subtract(m2);
 			return RetVal;
 		}
@@ -339,23 +390,34 @@ namespace ArgusPaintNet.Shared
 		public static bool operator ==(Matrix m1, Matrix m2)
 		{
 			if (object.ReferenceEquals(m1, m2))
-				return true;
+            {
+                return true;
+            }
 
-			if (m1 is null)
-				return false;
-			if (m2 is null)
-				return false;
+            if (m1 is null)
+            {
+                return false;
+            }
 
-			if (m1.RowCount != m2.RowCount || m1.ColumnCount != m2.ColumnCount)
-				return false;
+            if (m2 is null)
+            {
+                return false;
+            }
 
-			for (int row = 0; row < m1.RowCount; row++)
+            if (m1.RowCount != m2.RowCount || m1.ColumnCount != m2.ColumnCount)
+            {
+                return false;
+            }
+
+            for (int row = 0; row < m1.RowCount; row++)
 			{
 				for (int col = 0; col < m1.ColumnCount; col++)
 				{
 					if (m1[row, col] != m2[row, col])
-						return false;
-				}
+                    {
+                        return false;
+                    }
+                }
 			}
 			return true;
 		}

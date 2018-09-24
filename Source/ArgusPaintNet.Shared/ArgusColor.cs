@@ -182,9 +182,11 @@ namespace ArgusPaintNet.Shared
         private static double ReverseBlend_GetAlpha(ArgusColor blend, ArgusColor background)
 		{
 			if (background.A < 255)
-				return Math.Max(0, (blend.A - background.A) / (255.0 - background.A));
+            {
+                return Math.Max(0, (blend.A - background.A) / (255.0 - background.A));
+            }
 
-			double a = ReverseBlend_GetAlpha(blend.R, background.R);
+            double a = ReverseBlend_GetAlpha(blend.R, background.R);
 			a = Math.Max(a, ReverseBlend_GetAlpha(blend.G, background.G));
 			a = Math.Max(a, ReverseBlend_GetAlpha(blend.B, background.B));
 			return a;
@@ -194,25 +196,36 @@ namespace ArgusPaintNet.Shared
 		{
 			double a = blend - background;
 			if (a == 0)
-				return 0;
-			if (a > 0)
-				return a / (255 - background);
-			else
-				return -a / background;
-		}
+            {
+                return 0;
+            }
+
+            if (a > 0)
+            {
+                return a / (255 - background);
+            }
+            else
+            {
+                return -a / background;
+            }
+        }
 
         private static byte ReverseBlend_GetColor(double a_f, byte blend, byte background)
 		{
 			if (a_f == 0)
-				return 0;
+            {
+                return 0;
+            }
 
-			return (byte)Math.Round((blend - background) / a_f + background);
+            return (byte)Math.Round((blend - background) / a_f + background);
 		}
 
         private static ArgusColor ReverseBlend_GetColor(double a_f, ArgusColor blend, ArgusColor background)
 		{
 			if (a_f == 0)
-				return new ArgusColor();
+            {
+                return new ArgusColor();
+            }
 
             var RetVal = new ArgusColor
             {

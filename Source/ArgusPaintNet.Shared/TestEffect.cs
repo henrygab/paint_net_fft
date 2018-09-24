@@ -32,10 +32,14 @@ namespace ArgusPaintNet.Shared
 					if (image != null)
 					{
 						if (image is Bitmap)
-							this._bitmap = Surface.CopyFromBitmap((Bitmap)image);
-						else
-							this._bitmap = Surface.CopyFromGdipImage(image);
-					}
+                        {
+                            this._bitmap = Surface.CopyFromBitmap((Bitmap)image);
+                        }
+                        else
+                        {
+                            this._bitmap = Surface.CopyFromGdipImage(image);
+                        }
+                    }
 				}
 			}
 		}
@@ -43,21 +47,30 @@ namespace ArgusPaintNet.Shared
 		public override void Render(EffectConfigToken parameters, RenderArgs dstArgs, RenderArgs srcArgs, Rectangle[] rois, int startIndex, int length)
 		{
 			if (this._bitmap == null)
-				return;
-			Rectangle bounds = srcArgs.Bounds;
+            {
+                return;
+            }
+
+            Rectangle bounds = srcArgs.Bounds;
 			foreach (Rectangle rect in rois)
 			{
 				for (int y = rect.Top; y < rect.Bottom; y++)
 				{
 					int by = y - bounds.Top;
 					if (by < 0 || by >= this._bitmap.Height)
-						continue;
-					for (int x = rect.Left; x < rect.Right; x++)
+                    {
+                        continue;
+                    }
+
+                    for (int x = rect.Left; x < rect.Right; x++)
 					{
 						int bx = x - bounds.Left;
 						if (bx < 0 || bx >= this._bitmap.Width)
-							continue;
-						dstArgs.Surface[x, y] = this._bitmap[x, y];
+                        {
+                            continue;
+                        }
+
+                        dstArgs.Surface[x, y] = this._bitmap[x, y];
 					}
 				}
 			}

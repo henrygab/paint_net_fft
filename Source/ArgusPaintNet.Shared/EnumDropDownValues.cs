@@ -16,9 +16,11 @@ namespace ArgusPaintNet.Shared
 		public EnumDropDownValues()
 		{
 			if (!typeof(T).IsEnum)
-				throw new InvalidOperationException("T is expected to be an Enum.");
+            {
+                throw new InvalidOperationException("T is expected to be an Enum.");
+            }
 
-			var values = (T[])Enum.GetValues(typeof(T));
+            var values = (T[])Enum.GetValues(typeof(T));
 			this._dict1 = new Dictionary<object, T>(values.Length);
 			this._dict2 = new Dictionary<T, object>(values.Length);
 			Assembly assembly = typeof(T).Assembly;
@@ -29,8 +31,11 @@ namespace ArgusPaintNet.Shared
 			{
 				string text = rm.GetString(prefix + val.ToString());
 				if (string.IsNullOrEmpty(text))
-					text = val.ToString();
-				this._dict1.Add(text, val);
+                {
+                    text = val.ToString();
+                }
+
+                this._dict1.Add(text, val);
 				this._dict2.Add(val, text);
 			}
 		}
@@ -48,15 +53,19 @@ namespace ArgusPaintNet.Shared
 		public object[] GetValues(params T[] leaveOut)
 		{
 			if (leaveOut == null || leaveOut.Length < 1)
-				return this.Values;
+            {
+                return this.Values;
+            }
 
-			var values = new List<object>(this._dict1.Count);
+            var values = new List<object>(this._dict1.Count);
 			var lOut = new List<T>(leaveOut);
 			foreach (KeyValuePair<T, object> item in this._dict2)
 			{
 				if (!lOut.Contains(item.Key))
-					values.Add(item.Value);
-			}
+                {
+                    values.Add(item.Value);
+                }
+            }
 			return values.ToArray();
 		}
 
@@ -69,16 +78,22 @@ namespace ArgusPaintNet.Shared
 		{
 			T RetVal;
 			if (!this._dict1.TryGetValue(val, out RetVal))
-				return new T();
-			return RetVal;
+            {
+                return new T();
+            }
+
+            return RetVal;
 		}
 
 		public object GetValue(T val)
 		{
 			object RetVal;
 			if (!this._dict2.TryGetValue(val, out RetVal))
-				return null;
-			return RetVal;
+            {
+                return null;
+            }
+
+            return RetVal;
 		}
 	}
 }

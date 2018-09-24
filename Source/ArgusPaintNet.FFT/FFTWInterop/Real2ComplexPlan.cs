@@ -55,8 +55,11 @@ namespace ArgusPaintNet.FFT.FFTWInterop
 			var ptr = (Complex*)this._out.ToPointer();
 			Complex RetVal = ptr[index];
 			if (conj)
-				RetVal = Complex.Conjugate(RetVal);
-			return RetVal;
+            {
+                RetVal = Complex.Conjugate(RetVal);
+            }
+
+            return RetVal;
 		}
 
 		public void Dispose()

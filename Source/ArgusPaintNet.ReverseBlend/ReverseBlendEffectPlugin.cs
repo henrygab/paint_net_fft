@@ -144,15 +144,21 @@ namespace ArgusPaintNet.ReverseBlend
 		protected override void OnRender(Rectangle[] renderRects, int startIndex, int length)
 		{
 			if (renderRects.Length < 1)
-				return;
-			Surface src = this.SrcArgs.Surface;
+            {
+                return;
+            }
+
+            Surface src = this.SrcArgs.Surface;
 			Surface dst = this.DstArgs.Surface;
 
 			foreach (Rectangle rect in renderRects)
 			{
 				if (this.IsCancelRequested)
-					return;
-				this.Render(src, dst, rect, this._taskBGColor.Result);
+                {
+                    return;
+                }
+
+                this.Render(src, dst, rect, this._taskBGColor.Result);
 			}
 		}
 
@@ -165,18 +171,27 @@ namespace ArgusPaintNet.ReverseBlend
 				{
 					ArgusColor px = src[x, y];
 					if (Math.Abs(px.R - bgColor.R) < this._tolRGB && Math.Abs(px.G - bgColor.G) < this._tolRGB && Math.Abs(px.B - bgColor.B) < this._tolRGB)
-						dst[x, y] = ColorBgra.FromUInt32(0);
-					else
+                    {
+                        dst[x, y] = ColorBgra.FromUInt32(0);
+                    }
+                    else
 					{
 						HsvColorF hsv = px;
 						double dHue = Math.Abs(hsv.Hue - hsvBg.Hue);
 						if (dHue > 180)
-							dHue = 360 - dHue;
-						if (dHue < this._tolHue && Math.Abs(hsv.Saturation - hsvBg.Saturation) < this._tolSat && Math.Abs(hsv.Value - hsvBg.Value) < this._tolVal)
-							dst[x, y] = ColorBgra.FromUInt32(0);
-						else
-							dst[x, y] = px.ReverseBlend(bgColor);
-					}
+                        {
+                            dHue = 360 - dHue;
+                        }
+
+                        if (dHue < this._tolHue && Math.Abs(hsv.Saturation - hsvBg.Saturation) < this._tolSat && Math.Abs(hsv.Value - hsvBg.Value) < this._tolVal)
+                        {
+                            dst[x, y] = ColorBgra.FromUInt32(0);
+                        }
+                        else
+                        {
+                            dst[x, y] = px.ReverseBlend(bgColor);
+                        }
+                    }
 				}
 			}
 		}

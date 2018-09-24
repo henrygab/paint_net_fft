@@ -28,18 +28,26 @@ namespace ArgusPaintNet.Shared
 		{
 			Image image = Utils.GetImageFromClipboard();
 			if (image == null)
-				return null;
-			if (image is Bitmap)
-				return Surface.CopyFromBitmap((Bitmap)image);
-			return Surface.CopyFromGdipImage(image);
+            {
+                return null;
+            }
+
+            if (image is Bitmap)
+            {
+                return Surface.CopyFromBitmap((Bitmap)image);
+            }
+
+            return Surface.CopyFromGdipImage(image);
 		}
 
 		public static Image GetImageFromClipboard()
 		{
 			if (Thread.CurrentThread.GetApartmentState() == ApartmentState.STA)
-				return Utils.GetImageFromClipboardCore();
+            {
+                return Utils.GetImageFromClipboardCore();
+            }
 
-			Image image = null;
+            Image image = null;
 			var thread = new Thread(() => { image = Utils.GetImageFromClipboardCore(); });
 			thread.SetApartmentState(ApartmentState.STA);
 			thread.Start();
@@ -83,9 +91,11 @@ namespace ArgusPaintNet.Shared
 			int height = BitConverter.ToInt32(data, 8);
 			int bpp = BitConverter.ToInt16(data, 14);
 			if (bpp != 32)
-				return Clipboard.GetImage();
+            {
+                return Clipboard.GetImage();
+            }
 
-			var handle = GCHandle.Alloc(data, GCHandleType.Pinned);
+            var handle = GCHandle.Alloc(data, GCHandleType.Pinned);
 			try
 			{
 				var ptr = new IntPtr((long)handle.AddrOfPinnedObject() + 40);
@@ -104,8 +114,11 @@ namespace ArgusPaintNet.Shared
 		public static float[] GetGaussian(int length)
 		{
 			if ((length & 0x1) != 1 || length < 1)
-				throw new ArgumentException("length must be positive and odd");
-			double sigma2 = length * length / 36.0;
+            {
+                throw new ArgumentException("length must be positive and odd");
+            }
+
+            double sigma2 = length * length / 36.0;
 			double a = 1 / Math.Sqrt(2 * Math.PI * sigma2);
 			double b = -1 / (2 * sigma2);
 			float[] RetVal = new float[length];
@@ -132,10 +145,16 @@ namespace ArgusPaintNet.Shared
 		public static double NormalizePeriodic(double val, double T)
 		{
 			while (val < 0)
-				val += T;
-			while (val > T)
-				val -= T;
-			return val;
+            {
+                val += T;
+            }
+
+            while (val > T)
+            {
+                val -= T;
+            }
+
+            return val;
 		}
 	}
 }

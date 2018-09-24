@@ -161,10 +161,14 @@ namespace ArgusPaintNet.EdgeDetection
 						this._form.FormClosed += (sender, e) =>
 						{
 							if (((Form)sender).DialogResult != DialogResult.OK)
-								this._cancelToken.SignalCancelRequest();
-						};
+                            {
+                                this._cancelToken.SignalCancelRequest();
+                            }
+                        };
                         if (this._form.CancelButton is Control c)
+                        {
                             c.Click += (sender, e) => { this._cancelToken.SignalCancelRequest(); };
+                        }
                     }
 				}
 			}
@@ -193,8 +197,10 @@ namespace ArgusPaintNet.EdgeDetection
 
 			int length = 2 * this._radius + 1;
 			if (length < 3)
-				this._weight = null;
-			else if (this._weight == null || length != this._weight.RowCount)
+            {
+                this._weight = null;
+            }
+            else if (this._weight == null || length != this._weight.RowCount)
 			{
 				this._weight = Utils.GetGaussianKernelY(length) * Utils.GetGaussianKernelX(length);
 				this._cachedCharacteristics.Invalidate();
@@ -213,10 +219,15 @@ namespace ArgusPaintNet.EdgeDetection
 				{
 					StructurTensor tensor;
 					if (this._weight != null)
-						tensor = stField.Convolve(x - bounds.Left, y - bounds.Top, this._weight);
-					else
-						tensor = stField[x - bounds.Left, y - bounds.Top];
-					values[x - rect.Left, y - rect.Top] = tensor.GetCharacteristics();
+                    {
+                        tensor = stField.Convolve(x - bounds.Left, y - bounds.Top, this._weight);
+                    }
+                    else
+                    {
+                        tensor = stField[x - bounds.Left, y - bounds.Top];
+                    }
+
+                    values[x - rect.Left, y - rect.Top] = tensor.GetCharacteristics();
 				}
 			}
 		}
@@ -228,14 +239,20 @@ namespace ArgusPaintNet.EdgeDetection
 			if (hueDirection == HueDirection.Clockwise)
 			{
 				if (val1 > val2)
-					val1 -= 360;
-				return new Pair<int, int>(val1, val2);
+                {
+                    val1 -= 360;
+                }
+
+                return new Pair<int, int>(val1, val2);
 			}
 			if (hueDirection == HueDirection.CounterClockwise)
 			{
 				if (val2 > val1)
-					val2 -= 360;
-				return new Pair<int, int>(val1, val2);
+                {
+                    val2 -= 360;
+                }
+
+                return new Pair<int, int>(val1, val2);
 			}
 
 			Pair<int, int> clk = this.GetHues(HueDirection.Clockwise);
@@ -245,14 +262,20 @@ namespace ArgusPaintNet.EdgeDetection
 			if (hueDirection == HueDirection.Shortest)
 			{
 				if (dClk < dCclk)
-					return clk;
-				return cclk;
+                {
+                    return clk;
+                }
+
+                return cclk;
 			}
 			else //if (hueDirection == HueDirection.Longest)
 			{
 				if (dClk > dCclk)
-					return clk;
-				return cclk;
+                {
+                    return clk;
+                }
+
+                return cclk;
 			}
 		}
 
@@ -278,11 +301,15 @@ namespace ArgusPaintNet.EdgeDetection
 						float ev;
 						TensorCharacteristics tChar = charact[x - rect.Left, y - rect.Top];
                         if (this._mode == Modes.Edge)
-							ev = tChar.MaxEigenvalue;
-						else
-							ev = tChar.MinEigenvalue;
+                        {
+                            ev = tChar.MaxEigenvalue;
+                        }
+                        else
+                        {
+                            ev = tChar.MinEigenvalue;
+                        }
 
-						ev -= this._lowerThres;
+                        ev -= this._lowerThres;
 						ev *= factor;
 						ev = Math.Max(0, Math.Min(255, ev));
 						HsvColor color = this._color;
@@ -290,9 +317,11 @@ namespace ArgusPaintNet.EdgeDetection
 						{
 							double ang = Utils.NormalizePeriodic(tChar.DominantDirection-this._angle, Math.PI);
 							if (ang > MathUtil.PIOver2)
-								ang = Math.PI - ang;
+                            {
+                                ang = Math.PI - ang;
+                            }
 
-							color.Hue = (int)Utils.NormalizePeriodic(ang * fHue + hues.First, 360);
+                            color.Hue = (int)Utils.NormalizePeriodic(ang * fHue + hues.First, 360);
 							color.Saturation = (int)Math.Max(0, Math.Min(100, ang * fSat + color.Saturation));
 							color.Value = (int)Math.Max(0, Math.Min(100, ang * fVal + color.Value));
 						}

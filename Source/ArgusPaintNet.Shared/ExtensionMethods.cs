@@ -77,15 +77,26 @@ namespace ArgusPaintNet.Shared
 					{
 						ColorBgra c = surface[x, y];
 						if (c.R < minValue.R || c.R > maxValue.R)
-							continue;
-						if (c.G < minValue.G || c.G > maxValue.G)
-							continue;
-						if (c.B < minValue.B || c.B > maxValue.B)
-							continue;
-						if (c.A < minValue.A || c.A > maxValue.A)
-							continue;
+                        {
+                            continue;
+                        }
 
-						int v = c.R - K.R;
+                        if (c.G < minValue.G || c.G > maxValue.G)
+                        {
+                            continue;
+                        }
+
+                        if (c.B < minValue.B || c.B > maxValue.B)
+                        {
+                            continue;
+                        }
+
+                        if (c.A < minValue.A || c.A > maxValue.A)
+                        {
+                            continue;
+                        }
+
+                        int v = c.R - K.R;
 						r += v;
 						r2 += v * v;
 

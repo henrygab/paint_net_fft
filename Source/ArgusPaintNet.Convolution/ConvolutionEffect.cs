@@ -33,13 +33,18 @@ namespace ArgusPaintNet.Convolution
 		protected override void OnRender(Rectangle[] renderRects, int startIndex, int length)
 		{
 			if (length < 1)
-				return;
+            {
+                return;
+            }
 
-			foreach(Rectangle rect in renderRects)
+            foreach (Rectangle rect in renderRects)
 			{
 				if (this.IsCancelRequested)
-					return;
-				this.Render(rect, this.SrcArgs.Surface, this.DstArgs.Surface);
+                {
+                    return;
+                }
+
+                this.Render(rect, this.SrcArgs.Surface, this.DstArgs.Surface);
 			}
 		}
 
@@ -57,7 +62,9 @@ namespace ArgusPaintNet.Convolution
 			for (int y = rect.Top; y < rect.Bottom; y++)
 			{
 				if (this.IsCancelRequested)
-					return;
+                {
+                    return;
+                }
 
 #if UNSAFE
 				ColorBgra*[] pointers = new ColorBgra*[kHeight];
@@ -76,7 +83,7 @@ namespace ArgusPaintNet.Convolution
 #if UNSAFE
 				for (int x = 0; x < rect.Width; x++)
 #else
-				for (int x = rect.Left; x < rect.Right; x++)
+                for (int x = rect.Left; x < rect.Right; x++)
 #endif
 				{
 					float r = 0;
@@ -87,8 +94,11 @@ namespace ArgusPaintNet.Convolution
 					{
 						int sx = x + col - kWidth / 2;
 						if (sx < 0 || sx >= srcBounds.Width)
-							continue;
-						for (int row = 0; row < kHeight; row++)
+                        {
+                            continue;
+                        }
+
+                        for (int row = 0; row < kHeight; row++)
 						{
 #if UNSAFE
 							if (pointers[row] == null)
@@ -97,8 +107,11 @@ namespace ArgusPaintNet.Convolution
 #else
 							int sy = y + row - kHeight / 2;
 							if (sy < 0 || sy >= srcBounds.Height)
-								continue;
-							ColorBgra px = srcSurface[sx, sy];
+                            {
+                                continue;
+                            }
+
+                            ColorBgra px = srcSurface[sx, sy];
 #endif
 							r += kernel[row, col] * px.R * factor;
 							g += kernel[row, col] * px.G * factor;
