@@ -45,7 +45,7 @@ namespace ArgusPaintNet.FFT.FFTWInterop
 		//	return true;
 		//}
 
-		public void Execute() { lock (this) { FFTW.fftw_execute(this._plan); } }
+		public void Execute() { lock (this) { FFTW.NativeMethods.fftw_execute(this._plan); } }
 
 		public unsafe void SetInput(int x, int y, Complex value)
 		{

@@ -33,7 +33,7 @@ namespace ArgusPaintNet.FFT.FFTWInterop
 
 		public static Real2ComplexPlan GetInstance(int width, int height) { return FFTW.fftw_plan_dft_r2c_2d(width, height); }
 
-		public void Execute() { lock (this) { FFTW.fftw_execute(this._plan); } }
+		public void Execute() { lock (this) { FFTW.NativeMethods.fftw_execute(this._plan); } }
 
 		public unsafe void SetInput(int x, int y, double value)
 		{

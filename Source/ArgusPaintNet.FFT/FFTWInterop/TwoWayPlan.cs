@@ -51,8 +51,8 @@ namespace ArgusPaintNet.FFT.FFTWInterop
 		//	return true;
 		//}
 
-		public void ExecuteForwards() { lock (this) { FFTW.fftw_execute(this._planForwards); } }
-		public void ExecuteBackwards() { lock (this) { FFTW.fftw_execute(this._planBackwards); } }
+		public void ExecuteForwards() { lock (this) { FFTW.NativeMethods.fftw_execute(this._planForwards); } }
+		public void ExecuteBackwards() { lock (this) { FFTW.NativeMethods.fftw_execute(this._planBackwards); } }
 
         private long GetIndex(int x, int y) { return x * this._height + y; }
 
@@ -86,12 +86,12 @@ namespace ArgusPaintNet.FFT.FFTWInterop
 
 		public unsafe void ClearData()
 		{
-			MemSet(this._in, 0, (int)(this._width * this._height * sizeof(Complex)));
+            NativeMethods.MemSet(this._in, 0, (int)(this._width * this._height * sizeof(Complex)));
 		}
 
 		public unsafe void ClearTransformedData()
 		{
-			MemSet(this._out, 0, (int)(this._width * this._height * sizeof(Complex)));
+            NativeMethods.MemSet(this._out, 0, (int)(this._width * this._height * sizeof(Complex)));
 		}
 
 		public void Dispose()
@@ -102,7 +102,14 @@ namespace ArgusPaintNet.FFT.FFTWInterop
 			FFTW.fftw_destroy_plan(ref this._planBackwards);
 		}
 
-		[DllImport("msvcrt.dll", EntryPoint = "memset", CallingConvention = CallingConvention.Cdecl, SetLastError = false)]
-        private static extern IntPtr MemSet(IntPtr dest, int c, int count);
-	}
+        private static class NativeMethods
+        {
+            [DllImport("msvcrt.dll", EntryPoint = "memset", CallingConvention = CallingConvention.Cdecl, SetLastError = false)]
+            internal static extern IntPtr MemSet(IntPtr dest, int c, int count);
+        }
+    }
+
+
+
+
 }
