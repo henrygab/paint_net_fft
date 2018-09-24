@@ -15,7 +15,7 @@ namespace ArgusPaintNet.Shared
 	/// and therefore is NOT optimized for speed: No complex, optimized algorithms (e.g. for Matrix Multiplication),
 	/// no parallel computing, etc.
 	/// </summary>
-	public class Matrix : IXmlSerializable
+	public sealed class Matrix : IXmlSerializable
 	{
         private float[,] _matrix;
 

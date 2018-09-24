@@ -10,7 +10,7 @@ using System.Xml.Schema;
 
 namespace ArgusPaintNet.Convolution
 {
-	public class Matrix : IXmlSerializable
+	public sealed class Matrix : IXmlSerializable
 	{
         private float[,] _matrix;
 
