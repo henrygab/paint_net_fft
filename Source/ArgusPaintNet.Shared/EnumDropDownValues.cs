@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -50,9 +50,9 @@ namespace ArgusPaintNet.Shared
 			if (leaveOut == null || leaveOut.Length < 1)
 				return this.Values;
 
-			List<object> values = new List<object>(_dict1.Count);
+			List<object> values = new List<object>(this._dict1.Count);
 			List<T> lOut = new List<T>(leaveOut);
-			foreach (KeyValuePair<T, object> item in _dict2)
+			foreach (KeyValuePair<T, object> item in this._dict2)
 			{
 				if (!lOut.Contains(item.Key))
 					values.Add(item.Value);

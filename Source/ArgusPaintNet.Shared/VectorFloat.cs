@@ -6,8 +6,8 @@ namespace ArgusPaintNet.Shared
 	{
 		public VectorFloat(float x, float y)
 		{
-			X = x;
-			Y = y;
+            this.X = x;
+            this.Y = y;
 		}
 
 		public float X { get; set; }
@@ -17,7 +17,7 @@ namespace ArgusPaintNet.Shared
 		{
 			if (obj is VectorFloat vector)
 			{
-				return Equals(vector);
+				return this.Equals(vector);
 			}
 
 			return false;
@@ -25,7 +25,7 @@ namespace ArgusPaintNet.Shared
 
 		public bool Equals(VectorFloat other)
 		{
-			return X == other.X && Y == other.Y;
+			return this.X == other.X && this.Y == other.Y;
 		}
 
 		public override int GetHashCode()
@@ -34,8 +34,8 @@ namespace ArgusPaintNet.Shared
 
 			unchecked
 			{
-				hashCode = (hashCode * -1521134295) + X.GetHashCode();
-				hashCode = (hashCode * -1521134295) + Y.GetHashCode();
+				hashCode = (hashCode * -1521134295) + this.X.GetHashCode();
+				hashCode = (hashCode * -1521134295) + this.Y.GetHashCode();
 			}
 
 			return hashCode;

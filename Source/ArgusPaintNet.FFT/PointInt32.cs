@@ -6,8 +6,8 @@ namespace ArgusPaintNet.FFT
     {
         public PointInt32(int x, int y)
         {
-            X = x;
-            Y = y;
+            this.X = x;
+            this.Y = y;
         }
 
         public int X { get; set; }
@@ -17,7 +17,7 @@ namespace ArgusPaintNet.FFT
         {
             if (obj is PointInt32 value)
             {
-                return Equals(value);
+                return this.Equals(value);
             }
 
             return false;
@@ -25,7 +25,7 @@ namespace ArgusPaintNet.FFT
 
         public bool Equals(PointInt32 other)
         {
-            return X == other.X && Y == other.Y;
+            return this.X == other.X && this.Y == other.Y;
         }
 
         public override int GetHashCode()
@@ -34,8 +34,8 @@ namespace ArgusPaintNet.FFT
 
             unchecked
             {
-                hashCode = (hashCode * -1521134295) + X.GetHashCode();
-                hashCode = (hashCode * -1521134295) + Y.GetHashCode();
+                hashCode = (hashCode * -1521134295) + this.X.GetHashCode();
+                hashCode = (hashCode * -1521134295) + this.Y.GetHashCode();
             }
 
             return hashCode;

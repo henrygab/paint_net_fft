@@ -14,7 +14,7 @@ namespace ArgusPaintNet.Shared
 	{
 		private InputBox()
 		{
-			InitializeComponent();
+            this.InitializeComponent();
 		}
 
 		private void bOK_Click(object sender, EventArgs e)

@@ -7,26 +7,68 @@ root = true
 # All files
 [*]
 indent_style = space
+charset = utf-8
+indent_style = space
+indent_size = 4
+insert_final_newline = true
+
 
 # Code files
 [*.{cs,csx,vb,vbx}]
 indent_size = 4
 insert_final_newline = true
-charset = utf-8-bom
+charset = utf-8
+trim_trailing_whitespace = true
 
-###############################
-# .NET Coding Conventions     #
-###############################
+# Visual Studio Solution Files
+[*.sln]
+indent_style = tab
+
+# Visual Studio XML Project Files
+[*.{csproj,vbproj,vcxproj,vcxproj.filters,proj,projitems,shproj}]
+indent_size = 2
+
+# Various XML Configuration Files
+[*.{xml,config,props,targets,nuspec,resx,ruleset,vsixmanifest,vsct}]
+indent_size = 2
+
+# JSON Files
+[*.{json,json5}]
+indent_size = 2
+
+# YAML Files
+[*.{yml,yaml}]
+indent_size = 2
+
+# Markdown Files
+[*.md]
+trim_trailing_whitespace = false
+
+# Web Files
+[*.{htm,html,js,ts,tsx,css,scss,less,vue}]
+indent_size = 2
+insert_final_newline = true
+end_of_line = lf
+
+# Bash Files
+[*.sh]
+end_of_line = lf
+
+
+###########################
+# .NET Language Conventions
+# https://docs.microsoft.com/en-us/visualstudio/ide/editorconfig-code-style-settings-reference#language-conventions
+###########################
 
 [*.{cs,vb}]
 # Organize usings
 dotnet_sort_system_directives_first = true
 
 # this. preferences
-dotnet_style_qualification_for_field = true:suggestion
-dotnet_style_qualification_for_property = true:suggestion
-dotnet_style_qualification_for_method = true:suggestion
-dotnet_style_qualification_for_event = true:suggestion
+dotnet_style_qualification_for_field = true:warning
+dotnet_style_qualification_for_property = true:warning
+dotnet_style_qualification_for_method = true:warning
+dotnet_style_qualification_for_event = true:warning
 
 # Language keywords vs BCL types preferences
 dotnet_style_predefined_type_for_locals_parameters_members = true:suggestion

@@ -100,7 +100,7 @@ namespace ArgusPaintNet.Convolution
 
 		public ConvolutionEffectDialog()
 		{
-			InitializeComponent();
+            this.InitializeComponent();
 		}
 
 		protected override void OnLoad(EventArgs e)
