@@ -20,7 +20,7 @@ namespace ArgusPaintNet.FFT.FFTWInterop
 
 		public static bool IsAvailable { get; private set; }
 
-		[DllImport("Kernel32.dll")]
+		[DllImport("Kernel32.dll", CharSet=CharSet.Unicode)]
         private static extern bool SetDllDirectory(string path);
 
 		static FFTW()
@@ -136,14 +136,16 @@ namespace ArgusPaintNet.FFT.FFTWInterop
 		[DllImport(DllName)]
 		public static extern void fftw_execute(IntPtr fftw_plan); // Thread-Safe
 
-		#endregion
+        #endregion
 
-		#region Wisdom
+        #region Wisdom
 
-		[DllImport(DllName)]
-        private static extern int fftw_export_wisdom_to_filename(string filename);
+        [DllImport(DllName, CharSet = CharSet.Ansi, BestFitMapping = false, ThrowOnUnmappableChar = true)]
+        private static extern int fftw_export_wisdom_to_filename(
+            string filename
+            );
 
-		[DllImport(DllName)]
+        [DllImport(DllName, CharSet = CharSet.Ansi, BestFitMapping = false, ThrowOnUnmappableChar = true)]
         private static extern int fftw_import_wisdom_from_filename(string filename);
 
         private static bool fftw_export_wisdom()
