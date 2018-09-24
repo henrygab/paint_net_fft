@@ -15,9 +15,7 @@ namespace ArgusPaintNet.Shared
 
 		public CachedValues(int capacity, Action<Rectangle,T[,]> fillMethod)
 		{
-			if (fillMethod == null)
-				throw new ArgumentNullException();
-			this._actionFill = fillMethod;
+            this._actionFill = fillMethod ?? throw new ArgumentNullException();
 			this.capacity = capacity;
 			this.Invalidate();
 		}

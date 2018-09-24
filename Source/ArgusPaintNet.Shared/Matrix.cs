@@ -28,9 +28,7 @@ namespace ArgusPaintNet.Shared
 
 		public Matrix(float[,] matrix)
 		{
-			if (matrix == null)
-				throw new ArgumentNullException();
-			this._matrix = matrix;
+            this._matrix = matrix ?? throw new ArgumentNullException();
 		}
 
 		public Matrix(int rows, int columns)
