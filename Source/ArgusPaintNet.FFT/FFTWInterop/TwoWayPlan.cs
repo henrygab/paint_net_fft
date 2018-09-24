@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -103,6 +103,6 @@ namespace ArgusPaintNet.FFT.FFTWInterop
 		}
 
 		[DllImport("msvcrt.dll", EntryPoint = "memset", CallingConvention = CallingConvention.Cdecl, SetLastError = false)]
-        private static IntPtr MemSet(IntPtr dest, int c, int count);
+        private static extern IntPtr MemSet(IntPtr dest, int c, int count);
 	}
 }
