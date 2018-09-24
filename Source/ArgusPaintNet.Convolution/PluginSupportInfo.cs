@@ -8,8 +8,8 @@ using PaintDotNet;
 
 namespace ArgusPaintNet.Convolution
 {
-	public class PluginSupportInfo : IPluginSupportInfo
-	{
+    public class PluginSupportInfo : IPluginSupportInfo
+    {
         public string Author => "Argus Magnus";
         public string Copyright => ((AssemblyCopyrightAttribute)base.GetType().Assembly.GetCustomAttributes(typeof(AssemblyCopyrightAttribute), false)[0]).Copyright;
 

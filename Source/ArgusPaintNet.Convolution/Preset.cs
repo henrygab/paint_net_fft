@@ -11,80 +11,80 @@ using System.Globalization;
 namespace ArgusPaintNet.Convolution
 {
     internal static class PresetExtensions
-	{
-		public static Dictionary<string,ConvolutionConfigEffectToken> ToDictionary(this Preset[] presets)
-		{
-			return Preset.ToDictionary(presets);
-		}
+    {
+        public static Dictionary<string, ConvolutionConfigEffectToken> ToDictionary(this Preset[] presets)
+        {
+            return Preset.ToDictionary(presets);
+        }
 
-		public static Preset[] ToPresets(this Dictionary<string,ConvolutionConfigEffectToken> dict)
-		{
-			return Preset.FromDictionary(dict);
-		}
-	}
+        public static Preset[] ToPresets(this Dictionary<string, ConvolutionConfigEffectToken> dict)
+        {
+            return Preset.FromDictionary(dict);
+        }
+    }
 
-	public class Preset
-	{
-		public string Name { get; set; }
-		public ConvolutionConfigEffectToken Token { get; set; }
+    public class Preset
+    {
+        public string Name { get; set; }
+        public ConvolutionConfigEffectToken Token { get; set; }
 
-		public Preset()
-		{
-			this.Name = null;
-			this.Token = null;
-		}
+        public Preset()
+        {
+            this.Name = null;
+            this.Token = null;
+        }
 
-		public Preset(string name, ConvolutionConfigEffectToken token)
-		{
-			this.Name = name;
-			this.Token = new ConvolutionConfigEffectToken(token);
-		}
+        public Preset(string name, ConvolutionConfigEffectToken token)
+        {
+            this.Name = name;
+            this.Token = new ConvolutionConfigEffectToken(token);
+        }
 
-		public static Dictionary<string,ConvolutionConfigEffectToken> ToDictionary(Preset[] presets)
-		{
-			var dict = new Dictionary<string, ConvolutionConfigEffectToken>(presets.Length);
-			foreach (Preset preset in presets)
+        public static Dictionary<string, ConvolutionConfigEffectToken> ToDictionary(Preset[] presets)
+        {
+            var dict = new Dictionary<string, ConvolutionConfigEffectToken>(presets.Length);
+            foreach (Preset preset in presets)
             {
                 dict.Add(preset.Name, preset.Token);
             }
 
             return dict;
-		}
+        }
 
-		public static Preset[] FromDictionary(Dictionary<string,ConvolutionConfigEffectToken> dict)
-		{
-			var RetVal = new Preset[dict.Count];
-			int index = 0;
-			foreach (KeyValuePair<string,ConvolutionConfigEffectToken> item in dict)
-			{
-				RetVal[index] = new Preset(item.Key, item.Value);
-				index++;
-			}
-			return RetVal;
-		}
+        public static Preset[] FromDictionary(Dictionary<string, ConvolutionConfigEffectToken> dict)
+        {
+            var RetVal = new Preset[dict.Count];
+            int index = 0;
+            foreach (KeyValuePair<string, ConvolutionConfigEffectToken> item in dict)
+            {
+                RetVal[index] = new Preset(item.Key, item.Value);
+                index++;
+            }
+            return RetVal;
+        }
 
-		public static Preset[] LoadFromFile(string filename)
-		{
-			if (string.IsNullOrEmpty(filename) || !File.Exists(filename))
+        public static Preset[] LoadFromFile(string filename)
+        {
+            if (string.IsNullOrEmpty(filename) || !File.Exists(filename))
             {
                 return new Preset[0];
             }
 
             Preset[] presets;
-			var xs = new XmlSerializer(typeof(Preset[]));
-			using (var stream = new FileStream(filename, FileMode.Open))
-			{
-				try { presets = xs.Deserialize(stream) as Preset[]; }
-				catch { return new Preset[0]; }
-				if (presets == null)
+            var xs = new XmlSerializer(typeof(Preset[]));
+            using (var stream = new FileStream(filename, FileMode.Open))
+            {
+                try { presets = xs.Deserialize(stream) as Preset[]; }
+                catch { return new Preset[0]; }
+                if (presets == null)
                 {
                     return new Preset[0];
                 }
             }
-			var RetVal = new List<Preset>(presets.Length);
-			foreach(Preset preset in presets)
-			{
-				if (string.IsNullOrEmpty(preset.Name))
+            var RetVal = new List<Preset>(presets.Length);
+            foreach (Preset preset in presets)
+            {
+                if (string.IsNullOrEmpty(preset.Name))
                 {
                     continue;
                 }
@@ -100,18 +100,18 @@ namespace ArgusPaintNet.Convolution
                 }
 
                 RetVal.Add(preset);
-			}
-			return RetVal.ToArray();
-		}
+            }
+            return RetVal.ToArray();
+        }
 
-		public static void SaveToFile(string filename, Preset[] presets)
-		{
-			var xs = new XmlSerializer(typeof(Preset[]));
-			using (var stream = new FileStream(filename, FileMode.Create))
-			{
-				xs.Serialize(stream, presets);
-			}
-		}
+        public static void SaveToFile(string filename, Preset[] presets)
+        {
+            var xs = new XmlSerializer(typeof(Preset[]));
+            using (var stream = new FileStream(filename, FileMode.Create))
+            {
+                xs.Serialize(stream, presets);
+            }
+        }
 
         public static Preset[] DefaultPresets => new Preset[]
                 {
