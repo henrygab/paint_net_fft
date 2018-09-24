@@ -54,12 +54,12 @@ namespace ArgusPaintNet.Shared
 		}
 
 		public float this[int row, int column]
-		{
-			get { return this._matrix[row, column]; }
-			set { this._matrix[row, column] = value; }
-		}
+        {
+            get => this._matrix[row, column];
+            set => this._matrix[row, column] = value;
+        }
 
-		public float GetNormalizationFactor()
+        public float GetNormalizationFactor()
 		{
 			double pos = 0;
 			double neg = 0;

@@ -21,9 +21,9 @@ namespace ArgusPaintNet.Shared
 		public float Value11 { get; set; }
 		public float Value12 { get; set; }
 		public float Value22 { get; set; }
-		public float Value21 { get { return this.Value12; } set { this.Value12 = value; } }
+		public float Value21 { get => this.Value12; set => this.Value12 = value; }
 
-		public StructurTensor(float[] values)
+        public StructurTensor(float[] values)
 			:this()
 		{
 			this.Value11 = values[0];
@@ -102,25 +102,22 @@ namespace ArgusPaintNet.Shared
 		public void Set22(int x, int y, float value) { this._values[x, y, 2] = value; }
 
 		public StructurTensor this[int x, int y]
-		{
-			get
-			{
-				return new StructurTensor()
-				{
-					Value11 = this.Get11(x, y),
-					Value12 = this.Get12(x, y),
-					Value22 = this.Get22(x, y)
-				};
-			}
-			set
-			{
-				this.Set11(x, y, value.Value11);
-				this.Set12(x, y, value.Value12);
-				this.Set22(x, y, value.Value22);
-			}
-		}
+        {
+            get => new StructurTensor()
+            {
+                Value11 = this.Get11(x, y),
+                Value12 = this.Get12(x, y),
+                Value22 = this.Get22(x, y)
+            };
+            set
+            {
+                this.Set11(x, y, value.Value11);
+                this.Set12(x, y, value.Value12);
+                this.Set22(x, y, value.Value22);
+            }
+        }
 
-		public Rectangle GetBounds() { return new Rectangle(0, 0, this.Width, this.Height); }
+        public Rectangle GetBounds() { return new Rectangle(0, 0, this.Width, this.Height); }
 
 		public static async Task<StructurTensorField> FromIntensityImageAsync(IntensityImage image, Rectangle bounds, Matrix diffX = null, Matrix diffY = null, Effect callingEffect = null)
 		{
