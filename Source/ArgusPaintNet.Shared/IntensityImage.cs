@@ -11,8 +11,8 @@ namespace ArgusPaintNet.Shared
 {
 	public class IntensityImage
 	{
-		float[,] _pixels;
-		Effect _callingEffect;
+        private float[,] _pixels;
+        private Effect _callingEffect;
 
 		public int Width { get { return this._pixels.GetLength(0); } }
 		public int Height { get { return this._pixels.GetLength(1); } }

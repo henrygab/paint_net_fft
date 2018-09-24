@@ -81,8 +81,8 @@ namespace ArgusPaintNet.Shared
 
 	public class StructurTensorField
 	{
-		float[,,] _values;
-		Effect _callingEffect;
+        private float[,,] _values;
+        private Effect _callingEffect;
 
 		public int Width { get { return this._values.GetLength(0); } }
 		public int Height { get { return this._values.GetLength(1); } }

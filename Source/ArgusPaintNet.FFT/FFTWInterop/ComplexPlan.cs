@@ -7,13 +7,13 @@ using System.Numerics;
 
 namespace ArgusPaintNet.FFT.FFTWInterop
 {
-	class ComplexPlan : IDisposable 
+    internal class ComplexPlan : IDisposable 
 	{
-		uint _width;
-		uint _height;
-		IntPtr _in;
-		IntPtr _out;
-		IntPtr _plan;
+        private uint _width;
+        private uint _height;
+        private IntPtr _in;
+        private IntPtr _out;
+        private IntPtr _plan;
 
 		public int Width { get { return (int)this._width; } }
 		public int Height { get { return (int)this._height; } }

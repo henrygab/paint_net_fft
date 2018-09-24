@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +12,7 @@ namespace ArgusPaintNet.Convolution
 {
 	public class Matrix : IXmlSerializable
 	{
-		float[,] _matrix;
+        private float[,] _matrix;
 
 		public int RowCount { get { return this._matrix.GetLength(0); } }
 		public int ColumnCount { get { return this._matrix.GetLength(1); } }

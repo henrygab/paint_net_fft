@@ -71,15 +71,14 @@ namespace ArgusPaintNet.FFT
 			LinkCutoffFrequencies,
 		}
 
-		TwoWayPlan _fftPlan;
-		EnumDropDownValues<ValueSources> _enumDropDown;
-
-		ValueSources _valueSource;
-		double _lowPassX;
-		double _highPassX;
-		double _lowPassY;
-		double _highPassY;
-		bool _linkFrequencies = true;
+        private TwoWayPlan _fftPlan;
+        private EnumDropDownValues<ValueSources> _enumDropDown;
+        private ValueSources _valueSource;
+        private double _lowPassX;
+        private double _highPassX;
+        private double _lowPassY;
+        private double _highPassY;
+        private bool _linkFrequencies = true;
 
 		public BandPassFilterEffect()
 			: this(StaticName, StaticImage, StaticSubMenuName)

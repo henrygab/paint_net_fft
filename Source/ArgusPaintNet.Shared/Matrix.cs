@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,7 +17,7 @@ namespace ArgusPaintNet.Shared
 	/// </summary>
 	public class Matrix : IXmlSerializable
 	{
-		float[,] _matrix;
+        private float[,] _matrix;
 
 		public int RowCount { get { return this._matrix.GetLength(0); } }
 		public int ColumnCount { get { return this._matrix.GetLength(1); } }
@@ -317,7 +317,7 @@ namespace ArgusPaintNet.Shared
 			return RetVal;
 		}
 
-		float[] GetValues()
+        private float[] GetValues()
 		{
 			float[] RetVal = new float[this._matrix.Length];
 			Buffer.BlockCopy(this._matrix, 0, RetVal, 0, RetVal.Length * sizeof(float));

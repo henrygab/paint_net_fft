@@ -10,8 +10,8 @@ namespace ArgusPaintNet.Shared
 {
 	public class EnumDropDownValues<T> where T : struct
 	{
-		Dictionary<object, T> _dict1;
-		Dictionary<T, object> _dict2;
+        private Dictionary<object, T> _dict1;
+        private Dictionary<T, object> _dict2;
 
 		public EnumDropDownValues()
 		{

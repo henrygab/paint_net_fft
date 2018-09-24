@@ -8,14 +8,14 @@ using System.Runtime.InteropServices;
 
 namespace ArgusPaintNet.FFT.FFTWInterop
 {
-	class TwoWayPlan : IDisposable 
+    internal class TwoWayPlan : IDisposable 
 	{
-		uint _width;
-		uint _height;
-		IntPtr _in;
-		IntPtr _out;
-		IntPtr _planForwards;
-		IntPtr _planBackwards;
+        private uint _width;
+        private uint _height;
+        private IntPtr _in;
+        private IntPtr _out;
+        private IntPtr _planForwards;
+        private IntPtr _planBackwards;
 
 		public int Width { get { return (int)this._width; } }
 		public int Height { get { return (int)this._height; } }
@@ -54,7 +54,7 @@ namespace ArgusPaintNet.FFT.FFTWInterop
 		public void ExecuteForwards() { lock (this) { FFTW.fftw_execute(this._planForwards); } }
 		public void ExecuteBackwards() { lock (this) { FFTW.fftw_execute(this._planBackwards); } }
 
-		long GetIndex(int x, int y) { return x * this._height + y; }
+        private long GetIndex(int x, int y) { return x * this._height + y; }
 
 		public unsafe void SetData(int x, int y, Complex value)
 		{
@@ -103,6 +103,6 @@ namespace ArgusPaintNet.FFT.FFTWInterop
 		}
 
 		[DllImport("msvcrt.dll", EntryPoint = "memset", CallingConvention = CallingConvention.Cdecl, SetLastError = false)]
-		static extern IntPtr MemSet(IntPtr dest, int c, int count);
+        private static IntPtr MemSet(IntPtr dest, int c, int count);
 	}
 }

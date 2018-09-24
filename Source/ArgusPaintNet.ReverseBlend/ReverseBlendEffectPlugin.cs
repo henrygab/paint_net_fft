@@ -43,15 +43,14 @@ namespace ArgusPaintNet.ReverseBlend
 			ClipboardDominant
 		}
 
-		int _tolRGB = 0;
-		int _tolHue = 0;
-		int _tolSat = 0;
-		int _tolVal = 0;
-		BackgroundSources _bgSource = BackgroundSources.DominantColor;
-		int _domColMaxDev = 10;
-
-		Task<ArgusColor> _taskBGColor;
-		Surface _clipboardSurface = null;
+        private int _tolRGB = 0;
+        private int _tolHue = 0;
+        private int _tolSat = 0;
+        private int _tolVal = 0;
+        private BackgroundSources _bgSource = BackgroundSources.DominantColor;
+        private int _domColMaxDev = 10;
+        private Task<ArgusColor> _taskBGColor;
+        private Surface _clipboardSurface = null;
 
 		#endregion
 
@@ -157,7 +156,7 @@ namespace ArgusPaintNet.ReverseBlend
 			}
 		}
 
-		void Render(Surface src, Surface dst, Rectangle rect, ArgusColor bgColor)
+        private void Render(Surface src, Surface dst, Rectangle rect, ArgusColor bgColor)
 		{
 			HsvColorF hsvBg = bgColor;
 			for (int y = rect.Top; y < rect.Bottom; y++)

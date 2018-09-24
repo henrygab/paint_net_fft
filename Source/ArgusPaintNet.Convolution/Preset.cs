@@ -10,7 +10,7 @@ using System.Globalization;
 
 namespace ArgusPaintNet.Convolution
 {
-	static class PresetExtensions
+    internal static class PresetExtensions
 	{
 		public static Dictionary<string,ConvolutionConfigEffectToken> ToDictionary(this Preset[] presets)
 		{

@@ -44,23 +44,21 @@ namespace ArgusPaintNet.EdgeDetection
 			CounterClockwise
 		}
 
-		const float MaxThresholdValue = 1f;
-
-		Modes _mode = Modes.Edge;
-		float _lowerThres = 0.0f * MaxThresholdValue;
-		float _upperThres = 0.2f * MaxThresholdValue;
-		HsvColor _color = new HsvColor();
-		HsvColor _color2 = new HsvColor();
-		Matrix _diffX = new Matrix(new float[,] { { -1, -8, 0, 8, 1 } });
-		int _radius = 2;
-		Matrix _weight;
-		HueDirection _hueDirection;
-		double _angle = 0;
-
-		Task<StructurTensorField> _taskSTField = null;
-		Effect _cancelToken = null;
-		CachedValues<TensorCharacteristics> _cachedCharacteristics;
-		Form _form;
+        private const float MaxThresholdValue = 1f;
+        private Modes _mode = Modes.Edge;
+        private float _lowerThres = 0.0f * MaxThresholdValue;
+        private float _upperThres = 0.2f * MaxThresholdValue;
+        private HsvColor _color = new HsvColor();
+        private HsvColor _color2 = new HsvColor();
+        private Matrix _diffX = new Matrix(new float[,] { { -1, -8, 0, 8, 1 } });
+        private int _radius = 2;
+        private Matrix _weight;
+        private HueDirection _hueDirection;
+        private double _angle = 0;
+        private Task<StructurTensorField> _taskSTField = null;
+        private Effect _cancelToken = null;
+        private CachedValues<TensorCharacteristics> _cachedCharacteristics;
+        private Form _form;
 
 		public static string StaticName { get { return "Edge Detection (Argus)"; } }
 		public static Image StaticIcon { get { return null; } }
@@ -101,7 +99,7 @@ namespace ArgusPaintNet.EdgeDetection
 			});
 		}
 
-		void Initialize()
+        private void Initialize()
 		{
 			Surface surface = this.EnvironmentParameters.SourceSurface;
 			Rectangle bounds = this.EnvironmentParameters.GetSelection(surface.Bounds).GetBoundsInt();
@@ -206,7 +204,7 @@ namespace ArgusPaintNet.EdgeDetection
 			base.OnSetRenderInfo(newToken, dstArgs, srcArgs);
 		}
 
-		void GetCharacteristics(Rectangle rect, TensorCharacteristics[,] values)
+        private void GetCharacteristics(Rectangle rect, TensorCharacteristics[,] values)
 		{
 			StructurTensorField stField = this._taskSTField.Result;
 			Rectangle bounds = this.EnvironmentParameters.GetSelection(this.SrcArgs.Bounds).GetBoundsInt();
@@ -224,7 +222,7 @@ namespace ArgusPaintNet.EdgeDetection
 			}
 		}
 
-		Pair<int,int> GetHues(HueDirection hueDirection)
+        private Pair<int,int> GetHues(HueDirection hueDirection)
 		{
 			int val1 = this._color.Hue;
 			int val2 = this._color2.Hue;

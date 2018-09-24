@@ -16,19 +16,19 @@ namespace ArgusPaintNet.Shared
 	{
 		#region Fields
 		[FieldOffset(0)]
-		byte a;
+        private byte a;
 
 		[FieldOffset(1)]
-		byte r;
+        private byte r;
 
 		[FieldOffset(2)]
-		byte g;
+        private byte g;
 
 		[FieldOffset(3)]
-		byte b;
+        private byte b;
 
 		[FieldOffset(0)]
-		uint argb;
+        private uint argb;
 		#endregion
 
 		#region Properties
@@ -179,7 +179,7 @@ namespace ArgusPaintNet.Shared
 			return ReverseBlend_GetColor(a, this, background);
 		}
 
-		static double ReverseBlend_GetAlpha(ArgusColor blend, ArgusColor background)
+        private static double ReverseBlend_GetAlpha(ArgusColor blend, ArgusColor background)
 		{
 			if (background.A < 255)
 				return Math.Max(0, (blend.A - background.A) / (255.0 - background.A));
@@ -190,7 +190,7 @@ namespace ArgusPaintNet.Shared
 			return a;
 		}
 
-		static double ReverseBlend_GetAlpha(byte blend, byte background)
+        private static double ReverseBlend_GetAlpha(byte blend, byte background)
 		{
 			double a = blend - background;
 			if (a == 0)
@@ -201,7 +201,7 @@ namespace ArgusPaintNet.Shared
 				return -a / background;
 		}
 
-		static byte ReverseBlend_GetColor(double a_f, byte blend, byte background)
+        private static byte ReverseBlend_GetColor(double a_f, byte blend, byte background)
 		{
 			if (a_f == 0)
 				return 0;
@@ -209,7 +209,7 @@ namespace ArgusPaintNet.Shared
 			return (byte)Math.Round((blend - background) / a_f + background);
 		}
 
-		static ArgusColor ReverseBlend_GetColor(double a_f, ArgusColor blend, ArgusColor background)
+        private static ArgusColor ReverseBlend_GetColor(double a_f, ArgusColor blend, ArgusColor background)
 		{
 			if (a_f == 0)
 				return new ArgusColor();

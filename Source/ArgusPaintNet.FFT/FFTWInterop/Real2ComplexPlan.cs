@@ -8,14 +8,14 @@ using System.Runtime.InteropServices;
 
 namespace ArgusPaintNet.FFT.FFTWInterop
 {
-	class Real2ComplexPlan : IDisposable
+    internal class Real2ComplexPlan : IDisposable
 	{
-		uint _width;
-		uint _height;
-		uint _mHeight;
-		IntPtr _in;
-		IntPtr _out;
-		IntPtr _plan;
+        private uint _width;
+        private uint _height;
+        private uint _mHeight;
+        private IntPtr _in;
+        private IntPtr _out;
+        private IntPtr _plan;
 
 		public int Width { get { return (int)this._width; } }
 		public int Height { get { return (int)this._height; } }

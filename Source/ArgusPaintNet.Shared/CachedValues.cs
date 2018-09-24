@@ -9,9 +9,9 @@ namespace ArgusPaintNet.Shared
 {
 	public class CachedValues<T>
 	{
-		Dictionary<Rectangle, T[,]> _dict;
-		Action<Rectangle, T[,]> _actionFill;
-		int capacity;
+        private Dictionary<Rectangle, T[,]> _dict;
+        private Action<Rectangle, T[,]> _actionFill;
+        private int capacity;
 
 		public CachedValues(int capacity, Action<Rectangle,T[,]> fillMethod)
 		{
@@ -30,7 +30,7 @@ namespace ArgusPaintNet.Shared
 			}
 		}
 
-		bool InitValue(Rectangle roi, out T[,] value)
+        private bool InitValue(Rectangle roi, out T[,] value)
 		{
 			lock(this)
 			{

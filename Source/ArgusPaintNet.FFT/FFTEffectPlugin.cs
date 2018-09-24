@@ -20,13 +20,11 @@ namespace ArgusPaintNet.FFT
 	[PluginSupportInfo(typeof(PluginSupportInfo))]
 	public class FFTEffectPlugin : FFTWUsingEffect
 	{
-		R2ComplexPlan _fftPlanForwards;
-		ComplexPlan _fftPlanBackwards;
-
-		bool _isForwards = true;
-		ValueSources _valueSource = ValueSources.Intensity;
-
-		EnumDropDownValues<ValueSources> _enumDropDown;
+        private R2ComplexPlan _fftPlanForwards;
+        private ComplexPlan _fftPlanBackwards;
+        private bool _isForwards = true;
+        private ValueSources _valueSource = ValueSources.Intensity;
+        private EnumDropDownValues<ValueSources> _enumDropDown;
 
 		public enum PropertyNames
 		{
@@ -96,9 +94,9 @@ namespace ArgusPaintNet.FFT
 			this.RenderOutput(dst, renderRects, bounds, isForwards);
 		}
 
-		#region Helper Methods
+        #region Helper Methods
 
-		void InitializePlans(bool isForwards, RectInt32 bounds)
+        private void InitializePlans(bool isForwards, RectInt32 bounds)
 		{
 			if (isForwards)
 			{
@@ -118,7 +116,7 @@ namespace ArgusPaintNet.FFT
 			}
 		}
 
-		void ExecutePlan(bool isForwards)
+        private void ExecutePlan(bool isForwards)
 		{
 			if (isForwards)
 				this._fftPlanForwards.Execute();
@@ -126,7 +124,7 @@ namespace ArgusPaintNet.FFT
 				this._fftPlanBackwards.Execute();
 		}
 
-		void SetInput(Surface src, Rectangle[] rects, RectInt32 bounds, bool isForwards)
+        private void SetInput(Surface src, Rectangle[] rects, RectInt32 bounds, bool isForwards)
 		{
 			if (isForwards)
 				this.SetInputForwards(src, rects, bounds);
@@ -134,7 +132,7 @@ namespace ArgusPaintNet.FFT
 				this.SetInputBackwards(src, rects, bounds);
 		}
 
-		void RenderOutput(Surface dst, Rectangle[] rects, RectInt32 bounds, bool isForwards)
+        private void RenderOutput(Surface dst, Rectangle[] rects, RectInt32 bounds, bool isForwards)
 		{
 			if (isForwards)
 				this.RenderOutputForwards(dst, rects, bounds);
@@ -142,7 +140,7 @@ namespace ArgusPaintNet.FFT
 				this.RenderOutputBackwards(dst, rects, bounds);
 		}
 
-		void SetInputForwards(Surface src, Rectangle[] rects, RectInt32 bounds)
+        private void SetInputForwards(Surface src, Rectangle[] rects, RectInt32 bounds)
 		{
 			if (this.IsCancelRequested)
 				return;
@@ -174,7 +172,7 @@ namespace ArgusPaintNet.FFT
 			});
 		}
 
-		void RenderOutputForwards(Surface dst, Rectangle[] rects, RectInt32 bounds)
+        private void RenderOutputForwards(Surface dst, Rectangle[] rects, RectInt32 bounds)
 		{
 			PointInt32 center = new PointInt32(bounds.Left + bounds.Width / 2, bounds.Top + bounds.Height / 2);
 			double maxValue = 0;
@@ -243,7 +241,7 @@ namespace ArgusPaintNet.FFT
 			});
 		}
 
-		void SetInputBackwards(Surface src, Rectangle[] rects, RectInt32 bounds)
+        private void SetInputBackwards(Surface src, Rectangle[] rects, RectInt32 bounds)
 		{
 			if (this.IsCancelRequested)
 				return;
@@ -281,7 +279,7 @@ namespace ArgusPaintNet.FFT
 			});
 		}
 
-		void RenderOutputBackwards(Surface dst, Rectangle[] rects, RectInt32 bounds)
+        private void RenderOutputBackwards(Surface dst, Rectangle[] rects, RectInt32 bounds)
 		{
 			PointInt32 center = new PointInt32(bounds.Left + bounds.Width / 2, bounds.Top + bounds.Height / 2);
 
@@ -347,12 +345,12 @@ namespace ArgusPaintNet.FFT
 			});
 		}
 
-		static double GetFactor(double maxValue)
+        private static double GetFactor(double maxValue)
 		{
 			return ComplexToColor_MaxMag / maxValue;
 		}
 
-		static ColorBgra ComplexToColor(Complex val, double factor)
+        private static ColorBgra ComplexToColor(Complex val, double factor)
 		{
 			//uint rg = EncodeValue2((uint)Math.Round(val.Magnitude * factor));
 			uint rg = (uint)Math.Round(val.Magnitude * factor);
@@ -361,9 +359,10 @@ namespace ArgusPaintNet.FFT
 			return new ColorBgra() { Bgra = argb };
 		}
 
-		const uint ComplexToColor_MaxMag = 0xFFFF;
-		const double ColorToComplex_NormFactor = 1.0 / ComplexToColor_MaxMag;
-		static Complex ColorToComplex(ColorBgra val)
+        private const uint ComplexToColor_MaxMag = 0xFFFF;
+        private const double ColorToComplex_NormFactor = 1.0 / ComplexToColor_MaxMag;
+
+        private static Complex ColorToComplex(ColorBgra val)
 		{
 			uint p = val.Bgra & 0x000000FF;
 			//uint m = RetrieveValue2((val.Bgra & 0x00FFFF00) >> 8);
@@ -375,7 +374,7 @@ namespace ArgusPaintNet.FFT
 			return Complex.FromPolarCoordinates(mag, phase);
 		}
 
-		static uint EncodeValue3(uint value)
+        private static uint EncodeValue3(uint value)
 		{
 			uint rgb = 0;
 			for (int i = 0; i < 8; i++)
@@ -392,7 +391,7 @@ namespace ArgusPaintNet.FFT
 			return rgb;
 		}
 
-		static uint EncodeValue2(uint value)
+        private static uint EncodeValue2(uint value)
 		{
 			uint rg = 0;
 			for (int i = 0; i < 8; i++)
@@ -407,7 +406,7 @@ namespace ArgusPaintNet.FFT
 			return rg;
 		}
 
-		static uint RetrieveValue3(uint rgb)
+        private static uint RetrieveValue3(uint rgb)
 		{
 			uint value = 0;
 			for (int i = 0; i < 8; i++)
@@ -420,7 +419,7 @@ namespace ArgusPaintNet.FFT
 			return value;
 		}
 
-		static uint RetrieveValue2(uint rg)
+        private static uint RetrieveValue2(uint rg)
 		{
 			uint value = 0;
 			for (int i = 0; i < 8; i++)

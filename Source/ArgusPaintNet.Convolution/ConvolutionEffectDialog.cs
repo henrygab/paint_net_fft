@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -93,10 +93,10 @@ namespace ArgusPaintNet.Convolution
 		}
 	}
 #else
-	public partial class ConvolutionEffectDialog : EffectConfigDialog<ConvolutionEffect,ConvolutionConfigEffectToken>
+	partial class ConvolutionEffectDialog : EffectConfigDialog<ConvolutionEffect,ConvolutionConfigEffectToken>
 	{
-		bool _isValidKernel = true;
-		Dictionary<string, ConvolutionConfigEffectToken> _dictPresets;
+        private bool _isValidKernel = true;
+        private Dictionary<string, ConvolutionConfigEffectToken> _dictPresets;
 
 		public ConvolutionEffectDialog()
 		{

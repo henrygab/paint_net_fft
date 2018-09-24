@@ -24,7 +24,7 @@ namespace ArgusPaintNet.FFT
 		Blue
 	}
 
-	static class ValueSourcesExtensions
+    internal static class ValueSourcesExtensions
 	{
 		public static Func<ColorBgra, double> GetGetValueFunc(this ValueSources valueSource)
 		{

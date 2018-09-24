@@ -46,7 +46,7 @@ namespace ArgusPaintNet.Convolution
 #if UNSAFE
 		unsafe void Render(Rectangle rect, Surface srcSurface, Surface dstSurface)
 #else
-		void Render(Rectangle rect, Surface srcSurface, Surface dstSurface)
+        private void Render(Rectangle rect, Surface srcSurface, Surface dstSurface)
 #endif
 		{
 			Matrix kernel = this.Token.Kernel;

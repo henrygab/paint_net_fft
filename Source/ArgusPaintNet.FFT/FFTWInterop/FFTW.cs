@@ -9,19 +9,19 @@ using System.Windows.Forms;
 
 namespace ArgusPaintNet.FFT.FFTWInterop
 {
-	/// <summary>
-	/// http://fftw.org/fftw3_doc/
-	/// </summary>
-	static class FFTW
+    /// <summary>
+    /// http://fftw.org/fftw3_doc/
+    /// </summary>
+    internal static class FFTW
 	{
-		static readonly object _lock = new object();
+        private static readonly object _lock = new object();
 		public const string DllName = "libfftw3-3.dll";
-		const string WisdomFile = "fftw.wisdom";
+        private const string WisdomFile = "fftw.wisdom";
 
 		public static bool IsAvailable { get; private set; }
 
 		[DllImport("Kernel32.dll")]
-		static extern bool SetDllDirectory(string path);
+        private static bool SetDllDirectory(string path);
 
 		static FFTW()
 		{
@@ -53,31 +53,31 @@ namespace ArgusPaintNet.FFT.FFTWInterop
 		#region Threading
 
 		[DllImport(DllName)]
-		static extern int fftw_init_threads();
+        private static int fftw_init_threads();
 
 		[DllImport(DllName)]
-		static extern void fftw_plan_with_nthreads(int numberOfThreads);
+        private static void fftw_plan_with_nthreads(int numberOfThreads);
 
 		#endregion
 
 		#region Memory Management
 
 		[DllImport(DllName)]
-		static extern IntPtr fftw_malloc(int size);
+        private static IntPtr fftw_malloc(int size);
 
 		[DllImport(DllName)]
-		static extern void fftw_free(IntPtr ptr);
+        private static void fftw_free(IntPtr ptr);
 
 		public static void fftw_free(ref IntPtr ptr) { lock (_lock) { fftw_free(ptr); ptr = IntPtr.Zero; } }
 
 		[DllImport(DllName)]
-		static extern IntPtr fftw_alloc_real(int size);
+        private static IntPtr fftw_alloc_real(int size);
 
 		[DllImport(DllName)]
-		static extern IntPtr fftw_alloc_complex(int size);
+        private static IntPtr fftw_alloc_complex(int size);
 
 		[DllImport(DllName)]
-		static extern void fftw_destroy_plan(IntPtr plan);
+        private static void fftw_destroy_plan(IntPtr plan);
 
 		public static void fftw_destroy_plan(ref IntPtr plan) { lock (_lock) { fftw_destroy_plan(plan); plan = IntPtr.Zero; } }
 
@@ -86,7 +86,7 @@ namespace ArgusPaintNet.FFT.FFTWInterop
 		#region Planners
 
 		[DllImport(DllName)]
-		static extern IntPtr fftw_plan_dft_r2c_2d(int n0, int n1, IntPtr doubleIn, IntPtr complexOut, PlanningFlags flags = PlanningFlags.Default);
+        private static IntPtr fftw_plan_dft_r2c_2d(int n0, int n1, IntPtr doubleIn, IntPtr complexOut, PlanningFlags flags = PlanningFlags.Default);
 
 		public static Real2ComplexPlan fftw_plan_dft_r2c_2d(int width, int height)
 		{
@@ -100,7 +100,7 @@ namespace ArgusPaintNet.FFT.FFTWInterop
 		}
 
 		[DllImport(DllName)]
-		static extern IntPtr fftw_plan_dft_2d(int n0, int n1, IntPtr complexIn, IntPtr complexOut, int sign, PlanningFlags flags = PlanningFlags.Default);
+        private static IntPtr fftw_plan_dft_2d(int n0, int n1, IntPtr complexIn, IntPtr complexOut, int sign, PlanningFlags flags = PlanningFlags.Default);
 
 		public static ComplexPlan fftw_plan_dft_2d(int width, int height, bool forward)
 		{
@@ -141,12 +141,12 @@ namespace ArgusPaintNet.FFT.FFTWInterop
 		#region Wisdom
 
 		[DllImport(DllName)]
-		static extern int fftw_export_wisdom_to_filename(string filename);
+        private static int fftw_export_wisdom_to_filename(string filename);
 
 		[DllImport(DllName)]
-		static extern int fftw_import_wisdom_from_filename(string filename);
+        private static int fftw_import_wisdom_from_filename(string filename);
 
-		static bool fftw_export_wisdom()
+        private static bool fftw_export_wisdom()
 		{
 			lock (_lock)
 			{

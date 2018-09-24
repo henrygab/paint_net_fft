@@ -35,7 +35,7 @@ namespace ArgusPaintNet.Templates
 			Value1
 		}
 
-		bool _value1 = false;
+        private bool _value1 = false;
 
 		#endregion
 
@@ -78,7 +78,7 @@ namespace ArgusPaintNet.Templates
 				this.Render(rect, srcSurface, dstSurface);
 		}
 
-		void Render(Rectangle rect, Surface srcSurface, Surface dstSurface)
+        private void Render(Rectangle rect, Surface srcSurface, Surface dstSurface)
 		{
 			throw new NotImplementedException();
 		}

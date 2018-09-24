@@ -14,7 +14,7 @@ using System.Threading;
 
 namespace ArgusPaintNet.Shared
 {
-	static class CommonExtensions
+    internal static class CommonExtensions
 	{
 		public static Rectangle GetBounds<T>(this T[,] array)
 		{
@@ -47,7 +47,7 @@ namespace ArgusPaintNet.Shared
 			return image;
 		}
 
-		static Image GetImageFromClipboardCore()
+        private static Image GetImageFromClipboardCore()
 		{
 			using (MemoryStream ms = Clipboard.GetData("PNG") as MemoryStream)
 			{
