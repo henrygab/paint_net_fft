@@ -72,7 +72,7 @@ namespace ArgusPaintNet.FFT
 			Surface src = this.SrcArgs.Surface;
 			Surface dst = this.DstArgs.Surface;
 			RectInt32 bounds = this.EnvironmentParameters.GetSelection(src.Bounds).GetBoundsRectInt32();
-			Point center = new Point(bounds.Left + bounds.Width / 2, bounds.Top + bounds.Height / 2);
+			var center = new Point(bounds.Left + bounds.Width / 2, bounds.Top + bounds.Height / 2);
 
 			bool isForwards = this._isForwards;
 			this.InitializePlans(isForwards, bounds);
@@ -174,7 +174,7 @@ namespace ArgusPaintNet.FFT
 
         private void RenderOutputForwards(Surface dst, Rectangle[] rects, RectInt32 bounds)
 		{
-			PointInt32 center = new PointInt32(bounds.Left + bounds.Width / 2, bounds.Top + bounds.Height / 2);
+			var center = new PointInt32(bounds.Left + bounds.Width / 2, bounds.Top + bounds.Height / 2);
 			double maxValue = 0;
 			object _lock = new object();
 
@@ -246,7 +246,7 @@ namespace ArgusPaintNet.FFT
 			if (this.IsCancelRequested)
 				return;
 
-			PointInt32 center = new PointInt32(bounds.Left + bounds.Width / 2, bounds.Top + bounds.Height / 2);
+			var center = new PointInt32(bounds.Left + bounds.Width / 2, bounds.Top + bounds.Height / 2);
 
 			Parallel.For(0, rects.Length, (i, loopStateI) =>
 			{
@@ -281,7 +281,7 @@ namespace ArgusPaintNet.FFT
 
         private void RenderOutputBackwards(Surface dst, Rectangle[] rects, RectInt32 bounds)
 		{
-			PointInt32 center = new PointInt32(bounds.Left + bounds.Width / 2, bounds.Top + bounds.Height / 2);
+			var center = new PointInt32(bounds.Left + bounds.Width / 2, bounds.Top + bounds.Height / 2);
 
 			double maxValue = 0;
 			object _lock = new object();

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -214,7 +214,7 @@ namespace ArgusPaintNet.Shared
 			if (a_f == 0)
 				return new ArgusColor();
 
-			ArgusColor RetVal = new ArgusColor();
+			var RetVal = new ArgusColor();
 			RetVal.A = (byte)Math.Round(a_f * 255);
 			if (background.A < 255)
 			{

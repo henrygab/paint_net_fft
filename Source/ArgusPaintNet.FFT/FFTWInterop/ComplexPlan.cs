@@ -50,14 +50,14 @@ namespace ArgusPaintNet.FFT.FFTWInterop
 		public unsafe void SetInput(int x, int y, Complex value)
 		{
 			long index = x * this._height + y;
-			Complex* ptr = (Complex*)this._in.ToPointer();
+			var ptr = (Complex*)this._in.ToPointer();
 			ptr[index] = value;
 		}
 
 		public unsafe Complex GetOutput(int x, int y)
 		{
 			long index = x * this._height + y;
-			Complex* ptr = (Complex*)this._out.ToPointer();
+			var ptr = (Complex*)this._out.ToPointer();
 			return ptr[index];
 		}
 

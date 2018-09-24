@@ -105,7 +105,7 @@ namespace ArgusPaintNet.Convolution
 				}
 			}
 
-			StringBuilder sb = new StringBuilder();
+			var sb = new StringBuilder();
 			string[] RetVal = new string[this.RowCount];
 
 			for (int r = 0; r < this.RowCount; r++)
@@ -131,7 +131,7 @@ namespace ArgusPaintNet.Convolution
 			int capacity = 0;
 			for (int i = 0; i < rows.Length; i++)
 				capacity += rows[i].Length + 4;
-			StringBuilder sb = new StringBuilder(capacity);
+			var sb = new StringBuilder(capacity);
 			foreach (string row in rows)
 				sb.AppendLine(row);
 			return sb.ToString().TrimEnd();
@@ -196,7 +196,7 @@ namespace ArgusPaintNet.Convolution
 
 		void IXmlSerializable.ReadXml(XmlReader reader)
 		{
-			List<string> rows = new List<string>();
+			var rows = new List<string>();
 			string name = reader.LocalName;
 			while (reader.NodeType != XmlNodeType.EndElement || reader.LocalName != name)
 			{

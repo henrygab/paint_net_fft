@@ -99,7 +99,7 @@ namespace ArgusPaintNet.ReverseBlend
 
 		protected override void OnSetRenderInfo(PropertyBasedEffectConfigToken newToken, RenderArgs dstArgs, RenderArgs srcArgs)
 		{
-			BackgroundSources newBgSource = (BackgroundSources)newToken.GetProperty<StaticListChoiceProperty>(PropertyNames.BackgroundSource).Value;
+			var newBgSource = (BackgroundSources)newToken.GetProperty<StaticListChoiceProperty>(PropertyNames.BackgroundSource).Value;
 			this._tolRGB = newToken.GetProperty<Int32Property>(PropertyNames.ToleranceRGB).Value;
 			this._tolHue = newToken.GetProperty<Int32Property>(PropertyNames.ToleranceHue).Value;
 			this._tolSat = newToken.GetProperty<Int32Property>(PropertyNames.ToleranceSat).Value;

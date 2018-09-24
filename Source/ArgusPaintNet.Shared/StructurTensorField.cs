@@ -70,7 +70,7 @@ namespace ArgusPaintNet.Shared
 		public TensorCharacteristics GetCharacteristics()
 		{
 			Pair<float, float> evs = this.GetEigenvalues();
-			TensorCharacteristics RetVal = new TensorCharacteristics();
+			var RetVal = new TensorCharacteristics();
 			RetVal.MinEigenvalue = evs.First;
 			RetVal.MaxEigenvalue = evs.Second;
 			VectorFloat vec = this.GetEigenvector(RetVal.MaxEigenvalue);
@@ -133,7 +133,7 @@ namespace ArgusPaintNet.Shared
 				diffX = new float[,] { { -1, -8, 0, 8, 1 } };
 			if (diffY == null)
 				diffY = diffX.GetTransposed();
-			StructurTensorField RetVal = new StructurTensorField(bounds.Width, bounds.Height, callingEffect);
+			var RetVal = new StructurTensorField(bounds.Width, bounds.Height, callingEffect);
 			Parallel.For(bounds.Left, bounds.Right, (x, loopState) =>
 			{
 				if (RetVal.IsCancelRequested)
@@ -170,7 +170,7 @@ namespace ArgusPaintNet.Shared
 
 		public static StructurTensorField FromSurface(Surface surface, Rectangle bounds, Matrix diffX = null, Matrix diffY = null, Effect callingEffect = null)
 		{
-			IntensityImage image = IntensityImage.FromSurface(surface, bounds, callingEffect);
+			var image = IntensityImage.FromSurface(surface, bounds, callingEffect);
 			return StructurTensorField.FromIntensityImage(image, image.GetBounds(), diffX, diffY, callingEffect);
 		}
 
@@ -192,7 +192,7 @@ namespace ArgusPaintNet.Shared
 
 		public StructurTensor Convolve(int x, int y, Matrix kernel)
 		{
-			StructurTensor RetVal = new StructurTensor();
+			var RetVal = new StructurTensor();
 			for (int kx = 0; kx < kernel.ColumnCount; kx++)
 			{
 				int sx = x + kx - kernel.ColumnCount / 2;
@@ -225,7 +225,7 @@ namespace ArgusPaintNet.Shared
 
 		public StructurTensorField Convolve(Rectangle bounds, Matrix kernel)
 		{
-			StructurTensorField RetVal = new StructurTensorField(bounds.Width, bounds.Height, this._callingEffect);
+			var RetVal = new StructurTensorField(bounds.Width, bounds.Height, this._callingEffect);
 			Parallel.For(bounds.Left, bounds.Right, (x, loopState) =>
 			{
 				if (RetVal.IsCancelRequested)

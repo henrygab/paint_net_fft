@@ -18,12 +18,12 @@ namespace ArgusPaintNet.Shared
 			if (!typeof(T).IsEnum)
 				throw new InvalidOperationException("T is expected to be an Enum.");
 
-			T[] values = (T[])Enum.GetValues(typeof(T));
+			var values = (T[])Enum.GetValues(typeof(T));
 			this._dict1 = new Dictionary<object, T>(values.Length);
 			this._dict2 = new Dictionary<T, object>(values.Length);
 			Assembly assembly = typeof(T).Assembly;
 			string name = assembly.GetName().Name;
-            ResourceManager rm = new ResourceManager(name + ".Properties.Resources", assembly);
+            var rm = new ResourceManager(name + ".Properties.Resources", assembly);
 			string prefix = typeof(T).Name + '_';
 			foreach (T val in values)
 			{
@@ -50,8 +50,8 @@ namespace ArgusPaintNet.Shared
 			if (leaveOut == null || leaveOut.Length < 1)
 				return this.Values;
 
-			List<object> values = new List<object>(this._dict1.Count);
-			List<T> lOut = new List<T>(leaveOut);
+			var values = new List<object>(this._dict1.Count);
+			var lOut = new List<T>(leaveOut);
 			foreach (KeyValuePair<T, object> item in this._dict2)
 			{
 				if (!lOut.Contains(item.Key))

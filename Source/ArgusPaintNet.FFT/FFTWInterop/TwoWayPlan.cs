@@ -59,28 +59,28 @@ namespace ArgusPaintNet.FFT.FFTWInterop
 		public unsafe void SetData(int x, int y, Complex value)
 		{
 			long index = this.GetIndex(x, y);
-			Complex* ptr = (Complex*)this._in.ToPointer();
+			var ptr = (Complex*)this._in.ToPointer();
 			ptr[index] = value;
 		}
 
 		public unsafe Complex GetData(int x, int y)
 		{
 			long index = this.GetIndex(x, y);
-			Complex* ptr = (Complex*)this._in.ToPointer();
+			var ptr = (Complex*)this._in.ToPointer();
 			return ptr[index];
 		}
 
 		public unsafe Complex GetTransformedData(int x, int y)
 		{
 			long index = this.GetIndex(x, y);
-			Complex* ptr = (Complex*)this._out.ToPointer();
+			var ptr = (Complex*)this._out.ToPointer();
 			return ptr[index];
 		}
 
 		public unsafe void SetTransformedData(int x, int y, Complex value)
 		{
 			long index = this.GetIndex(x, y);
-			Complex* ptr = (Complex*)this._out.ToPointer();
+			var ptr = (Complex*)this._out.ToPointer();
 			ptr[index] = value;
 		}
 

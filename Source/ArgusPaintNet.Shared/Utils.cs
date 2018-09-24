@@ -40,7 +40,7 @@ namespace ArgusPaintNet.Shared
 				return Utils.GetImageFromClipboardCore();
 
 			Image image = null;
-			Thread thread = new Thread(() => { image = Utils.GetImageFromClipboardCore(); });
+			var thread = new Thread(() => { image = Utils.GetImageFromClipboardCore(); });
 			thread.SetApartmentState(ApartmentState.STA);
 			thread.Start();
 			thread.Join();
@@ -49,7 +49,7 @@ namespace ArgusPaintNet.Shared
 
         private static Image GetImageFromClipboardCore()
 		{
-			using (MemoryStream ms = Clipboard.GetData("PNG") as MemoryStream)
+			using (var ms = Clipboard.GetData("PNG") as MemoryStream)
 			{
 				if (ms != null)
 				{
@@ -69,7 +69,7 @@ namespace ArgusPaintNet.Shared
 			}
 
 			byte[] data;
-			using (MemoryStream ms = Clipboard.GetData(DataFormats.Dib) as MemoryStream)
+			using (var ms = Clipboard.GetData(DataFormats.Dib) as MemoryStream)
 			{
 				if (ms == null)
 				{
@@ -85,10 +85,10 @@ namespace ArgusPaintNet.Shared
 			if (bpp != 32)
 				return Clipboard.GetImage();
 
-			GCHandle handle = GCHandle.Alloc(data, GCHandleType.Pinned);
+			var handle = GCHandle.Alloc(data, GCHandleType.Pinned);
 			try
 			{
-				IntPtr ptr = new IntPtr((long)handle.AddrOfPinnedObject() + 40);
+				var ptr = new IntPtr((long)handle.AddrOfPinnedObject() + 40);
 				return new Bitmap(width, height, stride, System.Drawing.Imaging.PixelFormat.Format32bppArgb, ptr);
 			}
 			catch

@@ -107,8 +107,8 @@ namespace ArgusPaintNet.FFT
 
 			this._enumDropDown = new EnumDropDownValues<ValueSources>();
 
-			List<Property> props = new List<Property>();
-			List<PropertyCollectionRule> rules = new List<PropertyCollectionRule>();
+			var props = new List<Property>();
+			var rules = new List<PropertyCollectionRule>();
 			props.Add(new StaticListChoiceProperty(PropertyNames.ValueSource, this._enumDropDown.Values));
 			if (this.ShowSlidersLowPass)
 			{
@@ -185,7 +185,7 @@ namespace ArgusPaintNet.FFT
 			Surface src = this.SrcArgs.Surface;
 			Surface dst = this.DstArgs.Surface;
 			RectInt32 bounds = this.EnvironmentParameters.GetSelection(src.Bounds).GetBoundsRectInt32();
-			Point center = new Point(bounds.Left + bounds.Width / 2, bounds.Top + bounds.Height / 2);
+			var center = new Point(bounds.Left + bounds.Width / 2, bounds.Top + bounds.Height / 2);
 
 			lock (this)
 			{

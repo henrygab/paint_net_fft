@@ -119,7 +119,7 @@ namespace ArgusPaintNet.Shared
 			});
 
 			n_tot = Math.Max(1, n_tot);
-			ArgusColor mean = new ArgusColor();
+			var mean = new ArgusColor();
 			mean.R = (byte)Math.Round(r_tot / n_tot + K.R);
 			mean.G = (byte)Math.Round(g_tot / n_tot + K.G);
 			mean.B = (byte)Math.Round(b_tot / n_tot + K.B);
@@ -129,7 +129,7 @@ namespace ArgusPaintNet.Shared
 			double devG = Math.Round(Math.Sqrt((g2_tot - (g_tot * g_tot / n_tot)) / n_tot));
 			double devB = Math.Round(Math.Sqrt((b2_tot - (b_tot * b_tot / n_tot)) / n_tot));
 			double devA = Math.Round(Math.Sqrt((a2_tot - (a_tot * a_tot / n_tot)) / n_tot));
-			ArgusColor dev = new ArgusColor((byte)devR, (byte)devG, (byte)devB, (byte)devA);
+			var dev = new ArgusColor((byte)devR, (byte)devG, (byte)devB, (byte)devA);
 			return new Pair<ArgusColor, ArgusColor>(mean, dev);
 		}
 

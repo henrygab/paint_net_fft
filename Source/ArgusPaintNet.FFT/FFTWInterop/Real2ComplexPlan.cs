@@ -52,7 +52,7 @@ namespace ArgusPaintNet.FFT.FFTWInterop
 				conj = true;
 			}
 			long index = x * this._mHeight + y;
-			Complex* ptr = (Complex*)this._out.ToPointer();
+			var ptr = (Complex*)this._out.ToPointer();
 			Complex RetVal = ptr[index];
 			if (conj)
 				RetVal = Complex.Conjugate(RetVal);

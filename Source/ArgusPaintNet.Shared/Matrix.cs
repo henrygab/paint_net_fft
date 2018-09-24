@@ -120,7 +120,7 @@ namespace ArgusPaintNet.Shared
 				}
 			}
 
-			StringBuilder sb = new StringBuilder();
+			var sb = new StringBuilder();
 			string[] RetVal = new string[this.RowCount];
 
 			for (int r = 0; r < this.RowCount; r++)
@@ -146,7 +146,7 @@ namespace ArgusPaintNet.Shared
 			int capacity = 0;
 			for (int i = 0; i < rows.Length; i++)
 				capacity += rows[i].Length + 4;
-			StringBuilder sb = new StringBuilder(capacity);
+			var sb = new StringBuilder(capacity);
 			foreach (string row in rows)
 				sb.AppendLine(row);
 			return sb.ToString().TrimEnd();
@@ -211,7 +211,7 @@ namespace ArgusPaintNet.Shared
 
 		void IXmlSerializable.ReadXml(XmlReader reader)
 		{
-			List<string> rows = new List<string>();
+			var rows = new List<string>();
 			string name = reader.LocalName;
 			while (reader.NodeType != XmlNodeType.EndElement || reader.LocalName != name)
 			{
@@ -241,7 +241,7 @@ namespace ArgusPaintNet.Shared
 
 		public static Matrix operator *(float factor,Matrix m)
 		{
-			Matrix RetVal = new Matrix(m);
+			var RetVal = new Matrix(m);
 			RetVal.Multiply(factor);
 			return RetVal;
 		}
@@ -255,7 +255,7 @@ namespace ArgusPaintNet.Shared
 		{
 			if (m1.ColumnCount != m2.RowCount)
 				throw new ArgumentException("m1.ColumnCount must be equal to m2.RowCount.");
-			Matrix RetVal = new Matrix(m1.RowCount, m2.ColumnCount);
+			var RetVal = new Matrix(m1.RowCount, m2.ColumnCount);
 			for (int row = 0; row < RetVal.RowCount; row++)
 			{
 				for (int col = 0; col < RetVal.ColumnCount; col++)
@@ -288,7 +288,7 @@ namespace ArgusPaintNet.Shared
 			if (m1.ColumnCount != m2.ColumnCount || m1.RowCount != m2.ColumnCount)
 				throw new ArgumentException("Dimension mismatch.");
 
-			Matrix RetVal = new Matrix(m1);
+			var RetVal = new Matrix(m1);
 			RetVal.Add(m2);
 			return RetVal;
 		}
@@ -312,7 +312,7 @@ namespace ArgusPaintNet.Shared
 			if (m1.ColumnCount != m2.ColumnCount || m1.RowCount != m2.ColumnCount)
 				throw new ArgumentException("Dimension mismatch.");
 
-			Matrix RetVal = new Matrix(m1);
+			var RetVal = new Matrix(m1);
 			RetVal.Subtract(m2);
 			return RetVal;
 		}
@@ -326,7 +326,7 @@ namespace ArgusPaintNet.Shared
 
 		public Matrix GetTransposed()
 		{
-			Matrix RetVal = new Matrix(this.ColumnCount, this.RowCount);
+			var RetVal = new Matrix(this.ColumnCount, this.RowCount);
 			Buffer.BlockCopy(this._matrix, 0, RetVal._matrix, 0, sizeof(float)*this._matrix.Length);
 			return RetVal;
 		}
@@ -368,7 +368,7 @@ namespace ArgusPaintNet.Shared
 
 		public override bool Equals(object obj)
 		{
-			Matrix m = obj as Matrix;
+			var m = obj as Matrix;
 			if (m == null)
 				return false;
 			return (this == m);

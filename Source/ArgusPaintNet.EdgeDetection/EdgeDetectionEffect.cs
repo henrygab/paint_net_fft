@@ -163,7 +163,7 @@ namespace ArgusPaintNet.EdgeDetection
 							if (((Form)sender).DialogResult != DialogResult.OK)
 								this._cancelToken.SignalCancelRequest();
 						};
-						Control c = this._form.CancelButton as Control;
+						var c = this._form.CancelButton as Control;
 						if (c != null)
 							c.Click += (sender, e) => { this._cancelToken.SignalCancelRequest(); };
 					}
@@ -297,7 +297,7 @@ namespace ArgusPaintNet.EdgeDetection
 							color.Saturation = (int)Math.Max(0, Math.Min(100, ang * fSat + color.Saturation));
 							color.Value = (int)Math.Max(0, Math.Min(100, ang * fVal + color.Value));
 						}
-						ColorBgra c = ColorBgra.FromColor(color.ToColor());
+						var c = ColorBgra.FromColor(color.ToColor());
 						this.DstArgs.Surface[x, y] = c.NewAlpha((byte)ev);
 					}
 				}

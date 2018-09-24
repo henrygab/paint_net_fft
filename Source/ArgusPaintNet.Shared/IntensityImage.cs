@@ -37,7 +37,7 @@ namespace ArgusPaintNet.Shared
 
 		public static IntensityImage FromSurface(Surface surface, Rectangle bounds, Effect callingEffect = null)
 		{
-			IntensityImage RetVal = new IntensityImage(bounds.Width, bounds.Height, callingEffect);
+			var RetVal = new IntensityImage(bounds.Width, bounds.Height, callingEffect);
 			Parallel.For(bounds.Left, bounds.Right, (x, loopState) =>
 			  {
 				  if (RetVal.IsCancelRequested)
@@ -100,7 +100,7 @@ namespace ArgusPaintNet.Shared
 
 		public IntensityImage Convolve(Rectangle bounds, Matrix kernel)
 		{
-			IntensityImage RetVal = new IntensityImage(bounds.Width, bounds.Height, this._callingEffect);
+			var RetVal = new IntensityImage(bounds.Width, bounds.Height, this._callingEffect);
 			Parallel.For(bounds.Left, bounds.Right, (x, loopState) =>
 			  {
 				  if (RetVal.IsCancelRequested)
