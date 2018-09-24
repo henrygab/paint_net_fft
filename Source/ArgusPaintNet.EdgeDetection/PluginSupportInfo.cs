@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,8 +8,8 @@ using PaintDotNet;
 
 namespace ArgusPaintNet.EdgeDetection
 {
-	public class PluginSupportInfo : IPluginSupportInfo
-	{
+    public class PluginSupportInfo : IPluginSupportInfo
+    {
         public string Author => "Argus Magnus";
         public string Copyright => ((AssemblyCopyrightAttribute)base.GetType().Assembly.GetCustomAttributes(typeof(AssemblyCopyrightAttribute), false)[0]).Copyright;
 
