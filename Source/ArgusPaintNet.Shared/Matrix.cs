@@ -19,10 +19,10 @@ namespace ArgusPaintNet.Shared
 	{
         private float[,] _matrix;
 
-		public int RowCount { get { return this._matrix.GetLength(0); } }
-		public int ColumnCount { get { return this._matrix.GetLength(1); } }
+        public int RowCount => this._matrix.GetLength(0);
+        public int ColumnCount => this._matrix.GetLength(1);
 
-		public Matrix()
+        public Matrix()
 			: this(new float[0, 0])
 		{ }
 

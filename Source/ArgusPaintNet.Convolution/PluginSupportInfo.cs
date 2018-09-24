@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,43 +10,13 @@ namespace ArgusPaintNet.Convolution
 {
 	public class PluginSupportInfo : IPluginSupportInfo
 	{
-		public string Author
-		{
-			get
-			{
-				return "Argus Magnus";
-			}
-		}
-		public string Copyright
-		{
-			get
-			{
-				return ((AssemblyCopyrightAttribute)base.GetType().Assembly.GetCustomAttributes(typeof(AssemblyCopyrightAttribute), false)[0]).Copyright;
-			}
-		}
+        public string Author => "Argus Magnus";
+        public string Copyright => ((AssemblyCopyrightAttribute)base.GetType().Assembly.GetCustomAttributes(typeof(AssemblyCopyrightAttribute), false)[0]).Copyright;
 
-		public string DisplayName
-		{
-			get
-			{
-				return "Convolution";
-			}
-		}
+        public string DisplayName => "Convolution";
 
-		public Version Version
-		{
-			get
-			{
-				return base.GetType().Assembly.GetName().Version;
-			}
-		}
+        public Version Version => base.GetType().Assembly.GetName().Version;
 
-		public Uri WebsiteUri
-		{
-			get
-			{
-				return new Uri("http://www.getpaint.net/redirect/plugins.html");
-			}
-		}
-	}
+        public Uri WebsiteUri => new Uri("http://www.getpaint.net/redirect/plugins.html");
+    }
 }

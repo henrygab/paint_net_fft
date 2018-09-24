@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,11 +15,11 @@ namespace ArgusPaintNet.FFT.FFTWInterop
         private IntPtr _out;
         private IntPtr _plan;
 
-		public int Width { get { return (int)this._width; } }
-		public int Height { get { return (int)this._height; } }
-		public double NormalizationConstant { get { return 1.0 / Math.Sqrt((double)this._width * this._height); } }
+        public int Width => (int)this._width;
+        public int Height => (int)this._height;
+        public double NormalizationConstant => 1.0 / Math.Sqrt((double)this._width * this._height);
 
-		internal ComplexPlan(int width, int height, IntPtr inComplex, IntPtr outComplex, IntPtr plan)
+        internal ComplexPlan(int width, int height, IntPtr inComplex, IntPtr outComplex, IntPtr plan)
 		{
 			this._width = (uint)width;
 			this._height = (uint)height;

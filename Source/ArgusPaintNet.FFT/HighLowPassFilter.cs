@@ -19,49 +19,49 @@ namespace ArgusPaintNet.FFT
 	[PluginSupportInfo(typeof(PluginSupportInfo))]
 	public class HighPassFilterEffect : BandPassFilterEffect
 	{
-		public static new string StaticName { get { return "High Pass Filter"; } }
-		public static new Image StaticImage { get { return null; } }
-		public static new string StaticSubMenuName { get { return "Signal Processing"; } }
+        public static new string StaticName => "High Pass Filter";
+        public static new Image StaticImage => null;
+        public static new string StaticSubMenuName => "Signal Processing";
 
-		public HighPassFilterEffect()
+        public HighPassFilterEffect()
 			: base(StaticName, StaticImage, StaticSubMenuName)
 		{ }
 
-		protected override double InitialCutoffHighPassX { get { return 0.01; } }
-		protected override double InitialCutoffHighPassY { get { return 0.01; } }
-		protected override double InitialCutoffLowPassX { get { return 1; } }
-		protected override double InitialCutoffLowPassY { get { return 1; } }
-		protected override bool ShowSlidersHighPass { get { return true; } }
-		protected override bool ShowSlidersLowPass { get { return false; } }
-	}
+        protected override double InitialCutoffHighPassX => 0.01;
+        protected override double InitialCutoffHighPassY => 0.01;
+        protected override double InitialCutoffLowPassX => 1;
+        protected override double InitialCutoffLowPassY => 1;
+        protected override bool ShowSlidersHighPass => true;
+        protected override bool ShowSlidersLowPass => false;
+    }
 
 	[PluginSupportInfo(typeof(PluginSupportInfo))]
 	public class LowPassFilterEffect : BandPassFilterEffect
 	{
-		public static new string StaticName { get { return "Low Pass Filter"; } }
-		public static new Image StaticImage { get { return null; } }
-		public static new string StaticSubMenuName { get { return "Signal Processing"; } }
+        public static new string StaticName => "Low Pass Filter";
+        public static new Image StaticImage => null;
+        public static new string StaticSubMenuName => "Signal Processing";
 
-		public LowPassFilterEffect()
+        public LowPassFilterEffect()
 			: base(StaticName, StaticImage, StaticSubMenuName)
 		{ }
 
-		protected override double InitialCutoffHighPassX { get { return 0; } }
-		protected override double InitialCutoffHighPassY { get { return 0; } }
-		protected override double InitialCutoffLowPassX { get { return 0.5; } }
-		protected override double InitialCutoffLowPassY { get { return 0.5; } }
-		protected override bool ShowSlidersHighPass { get { return false; } }
-		protected override bool ShowSlidersLowPass { get { return true; } }
-	}
+        protected override double InitialCutoffHighPassX => 0;
+        protected override double InitialCutoffHighPassY => 0;
+        protected override double InitialCutoffLowPassX => 0.5;
+        protected override double InitialCutoffLowPassY => 0.5;
+        protected override bool ShowSlidersHighPass => false;
+        protected override bool ShowSlidersLowPass => true;
+    }
 
 	[PluginSupportInfo(typeof(PluginSupportInfo))]
 	public class BandPassFilterEffect : FFTWUsingEffect
 	{
-		public static string StaticName { get { return "Band Pass Filter"; } }
-		public static Image StaticImage { get { return null; } }
-		public static string StaticSubMenuName { get { return "Signal Processing"; } }
+        public static string StaticName => "Band Pass Filter";
+        public static Image StaticImage => null;
+        public static string StaticSubMenuName => "Signal Processing";
 
-		public enum PropertyNames
+        public enum PropertyNames
 		{
 			ValueSource,
 			CutoffFrequencyLowPassX,
@@ -88,14 +88,14 @@ namespace ArgusPaintNet.FFT
 			: base(name, null, subMenuName, EffectFlags.Configurable | EffectFlags.SingleRenderCall)
 		{ }
 
-		protected virtual double InitialCutoffLowPassX { get { return 0.5; } }
-		protected virtual double InitialCutoffHighPassX { get { return 0.01; } }
-		protected virtual double InitialCutoffLowPassY { get { return 0.5; } }
-		protected virtual double InitialCutoffHighPassY { get { return 0.01; } }
-		protected virtual bool ShowSlidersLowPass { get { return true; } }
-		protected virtual bool ShowSlidersHighPass { get { return true; } }
+        protected virtual double InitialCutoffLowPassX => 0.5;
+        protected virtual double InitialCutoffHighPassX => 0.01;
+        protected virtual double InitialCutoffLowPassY => 0.5;
+        protected virtual double InitialCutoffHighPassY => 0.01;
+        protected virtual bool ShowSlidersLowPass => true;
+        protected virtual bool ShowSlidersHighPass => true;
 
-		protected override PropertyCollection OnCreatePropertyCollectionCore()
+        protected override PropertyCollection OnCreatePropertyCollectionCore()
 		{
 			RectInt32 bounds = this.EnvironmentParameters.GetSelection(this.EnvironmentParameters.SourceSurface.Bounds).GetBoundsRectInt32();
 			double maxX = bounds.Width / 2.0;

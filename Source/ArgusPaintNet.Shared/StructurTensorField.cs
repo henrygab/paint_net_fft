@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -84,11 +84,11 @@ namespace ArgusPaintNet.Shared
         private readonly float[,,] _values;
         private readonly Effect _callingEffect;
 
-		public int Width { get { return this._values.GetLength(0); } }
-		public int Height { get { return this._values.GetLength(1); } }
-		public bool IsCancelRequested { get { return this._callingEffect != null && this._callingEffect.IsCancelRequested; } }
+        public int Width => this._values.GetLength(0);
+        public int Height => this._values.GetLength(1);
+        public bool IsCancelRequested => this._callingEffect != null && this._callingEffect.IsCancelRequested;
 
-		public StructurTensorField(int width, int height, Effect callingEffect = null)
+        public StructurTensorField(int width, int height, Effect callingEffect = null)
 		{
 			this._callingEffect = callingEffect;
 			this._values = new float[width, height, 3];

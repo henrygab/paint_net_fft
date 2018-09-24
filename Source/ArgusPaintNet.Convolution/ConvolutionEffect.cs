@@ -1,4 +1,4 @@
-﻿//#define UNSAFE
+//#define UNSAFE
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -14,11 +14,11 @@ namespace ArgusPaintNet.Convolution
 {
 	public class ConvolutionEffect : Effect<ConvolutionConfigEffectToken>
 	{
-		public static string StaticName { get { return "Convolution"; } }
-		public static Image StaticIcon { get { return null; } }
-		public static string StaticSubMenuName { get { return "Advanced"; } }
+        public static string StaticName => "Convolution";
+        public static Image StaticIcon => null;
+        public static string StaticSubMenuName => "Advanced";
 
-		public ConvolutionEffect()
+        public ConvolutionEffect()
 			: base(StaticName, StaticIcon, StaticSubMenuName, EffectFlags.Configurable)
 		{
 		}

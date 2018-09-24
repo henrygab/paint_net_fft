@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -96,39 +96,33 @@ namespace ArgusPaintNet.Convolution
 			}
 		}
 
-		public static Preset[] DefaultPresets
-		{
-			get
-			{
-				return new Preset[]
-				{
-					new Preset("Identity", new ConvolutionConfigEffectToken(new float[,] { { 1} }, 1, true)),
-					new Preset("EdgeDetection", new ConvolutionConfigEffectToken(new float[,] {
-						{ -1, -1, -1 },
-						{ -1, 8, -1 },
-						{ -1, -1, -1 } }, 1, true)),
-					new Preset("Sobel3X", new ConvolutionConfigEffectToken(new float[,] {
-						{ 1, 0, -1 },
-						{ 2, 0, -2 },
-						{ 1, 0, -1 } }, 1, true)),
-					new Preset("Sobel3Y", new ConvolutionConfigEffectToken(new float[,] {
-						{ 1, 2, 1 },
-						{ 0, 0, 0 },
-						{ -1, -2, -1 } }, 1, true)),
-					new Preset("Sobel5X", new ConvolutionConfigEffectToken(new float[,] {
-						{ -4, -5, 0, 5, 4 },
-						{ -8, -10, 0, 10, 8 },
-						{ -10, -20, 0, 20, 10 },
-						{ -8, -10, 0, 10, 8 },
-						{ -4, -5, 0, 5, 4 } }, 1, true)),
-					new Preset("Sobel5Y", new ConvolutionConfigEffectToken(new float[,] {
-						{ -4, -8, -10, -8, -4 },
-						{ -5, -10, -20, -10, -5 },
-						{ 0, 0, 0, 0, 0 },
-						{ 5, 10, 20, 10, 5 },
-						{ 4, 8, 10, 8, 4 } }, 1, true))
-				};
-			}
-		}
-	}
+        public static Preset[] DefaultPresets => new Preset[]
+                {
+                    new Preset("Identity", new ConvolutionConfigEffectToken(new float[,] { { 1} }, 1, true)),
+                    new Preset("EdgeDetection", new ConvolutionConfigEffectToken(new float[,] {
+                        { -1, -1, -1 },
+                        { -1, 8, -1 },
+                        { -1, -1, -1 } }, 1, true)),
+                    new Preset("Sobel3X", new ConvolutionConfigEffectToken(new float[,] {
+                        { 1, 0, -1 },
+                        { 2, 0, -2 },
+                        { 1, 0, -1 } }, 1, true)),
+                    new Preset("Sobel3Y", new ConvolutionConfigEffectToken(new float[,] {
+                        { 1, 2, 1 },
+                        { 0, 0, 0 },
+                        { -1, -2, -1 } }, 1, true)),
+                    new Preset("Sobel5X", new ConvolutionConfigEffectToken(new float[,] {
+                        { -4, -5, 0, 5, 4 },
+                        { -8, -10, 0, 10, 8 },
+                        { -10, -20, 0, 20, 10 },
+                        { -8, -10, 0, 10, 8 },
+                        { -4, -5, 0, 5, 4 } }, 1, true)),
+                    new Preset("Sobel5Y", new ConvolutionConfigEffectToken(new float[,] {
+                        { -4, -8, -10, -8, -4 },
+                        { -5, -10, -20, -10, -5 },
+                        { 0, 0, 0, 0, 0 },
+                        { 5, 10, 20, 10, 5 },
+                        { 4, 8, 10, 8, 4 } }, 1, true))
+                };
+    }
 }

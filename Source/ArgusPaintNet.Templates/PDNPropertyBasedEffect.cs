@@ -16,15 +16,15 @@ namespace ArgusPaintNet.Templates
 	[PluginSupportInfo(typeof(PDNPluginSupportInfo))]
 	public class PDNPropertyBasedEffect : PropertyBasedEffect
 	{
-		#region Static
+        #region Static
 
-		public static string StaticName { get { throw new NotImplementedException(); } }
-		public static Image StaticImage { get { return null; } }
-		public static string StaticSubMenuName { get { throw new NotImplementedException(); } }
+        public static string StaticName => throw new NotImplementedException();
+        public static Image StaticImage => null;
+        public static string StaticSubMenuName => throw new NotImplementedException();
 
-		#endregion
+        #endregion
 
-		public PDNPropertyBasedEffect()
+        public PDNPropertyBasedEffect()
 			: base(StaticName, StaticImage, StaticSubMenuName, EffectFlags.Configurable)
 		{ }
 

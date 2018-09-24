@@ -17,9 +17,9 @@ namespace ArgusPaintNet.FFT.FFTWInterop
         private IntPtr _planForwards;
         private IntPtr _planBackwards;
 
-		public int Width { get { return (int)this._width; } }
-		public int Height { get { return (int)this._height; } }
-		public double NormalizationConstantOneWay { get; private set;}
+        public int Width => (int)this._width;
+        public int Height => (int)this._height;
+        public double NormalizationConstantOneWay { get; private set;}
 		public double NormalizationConstantTwoWays { get; private set; }
 
 		internal TwoWayPlan(int width, int height, IntPtr _in, IntPtr _out, IntPtr planForwards, IntPtr planBackwards)

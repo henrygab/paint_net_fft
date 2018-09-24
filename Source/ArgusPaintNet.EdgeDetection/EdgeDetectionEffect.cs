@@ -60,11 +60,11 @@ namespace ArgusPaintNet.EdgeDetection
         private CachedValues<TensorCharacteristics> _cachedCharacteristics;
         private Form _form;
 
-		public static string StaticName { get { return "Edge Detection (Argus)"; } }
-		public static Image StaticIcon { get { return null; } }
-		public static string StaticSubMenuName { get { return SubmenuNames.Stylize; } }
+        public static string StaticName => "Edge Detection (Argus)";
+        public static Image StaticIcon => null;
+        public static string StaticSubMenuName => SubmenuNames.Stylize;
 
-		public EdgeDetectionEffect()
+        public EdgeDetectionEffect()
 			: base(StaticName, StaticIcon, StaticSubMenuName, EffectFlags.Configurable)
 		{
 		}

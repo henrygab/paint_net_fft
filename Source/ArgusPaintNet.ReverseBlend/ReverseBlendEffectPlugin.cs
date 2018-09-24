@@ -16,13 +16,13 @@ namespace ArgusPaintNet.ReverseBlend
 	[PluginSupportInfo(typeof(PluginSupportInfo))]
 	public class ReverseBlendEffectPlugin : PropertyBasedEffect
 	{
-		public static string StaticName { get { return "Reverse Blend"; } }
-		public static Image StaticImage { get { return null; } }
-		public static string StaticSubMenuName { get { return "Colors"; } }
+        public static string StaticName => "Reverse Blend";
+        public static Image StaticImage => null;
+        public static string StaticSubMenuName => "Colors";
 
-		#region UI
+        #region UI
 
-		public enum PropertyNames
+        public enum PropertyNames
 		{
 			BackgroundSource,
 			ColorWheel,
