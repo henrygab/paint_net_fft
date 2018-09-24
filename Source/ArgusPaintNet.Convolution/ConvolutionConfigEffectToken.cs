@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +10,7 @@ namespace ArgusPaintNet.Convolution
 {
 	public class ConvolutionConfigEffectToken : EffectConfigToken
 	{
-		public Matrix Kernel;
+		public ArgusPaintNet.Shared.Matrix Kernel;
 		public float Factor;
 		public bool Normalize;
 
@@ -25,12 +25,12 @@ namespace ArgusPaintNet.Convolution
 		public ConvolutionConfigEffectToken(ConvolutionConfigEffectToken copyToken)
 			:base(copyToken)
 		{
-			this.Kernel = new Matrix(copyToken.Kernel);
+			this.Kernel = new ArgusPaintNet.Shared.Matrix(copyToken.Kernel);
 			this.Factor = copyToken.Factor;
 			this.Normalize = copyToken.Normalize;
 		}
 
-		public ConvolutionConfigEffectToken(Matrix kernel, float factor, bool normalize)
+		public ConvolutionConfigEffectToken(ArgusPaintNet.Shared.Matrix kernel, float factor, bool normalize)
 		{
 			this.Kernel = kernel;
 			this.Factor = factor;

@@ -49,7 +49,7 @@ namespace ArgusPaintNet.Convolution
         private void Render(Rectangle rect, Surface srcSurface, Surface dstSurface)
 #endif
 		{
-			Matrix kernel = this.Token.Kernel;
+            ArgusPaintNet.Shared.Matrix kernel = this.Token.Kernel;
 			float factor = this.Token.Factor * kernel.GetNormalizationFactor();
 			int kWidth = kernel.ColumnCount;
 			int kHeight = kernel.RowCount;

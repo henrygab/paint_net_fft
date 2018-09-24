@@ -73,7 +73,6 @@
       <DependentUpon>ConvolutionEffectDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="ConvolutionConfigEffectToken.cs" />
-    <Compile Include="Matrix.cs" />
     <Compile Include="PluginSupportInfo.cs" />
     <Compile Include="Preset.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
