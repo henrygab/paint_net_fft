@@ -19,6 +19,7 @@ namespace ArgusPaintNet.Shared
 	{
         private float[,] _matrix;
 
+
         public int RowCount => this._matrix.GetLength(0);
         public int ColumnCount => this._matrix.GetLength(1);
 
@@ -340,9 +341,9 @@ namespace ArgusPaintNet.Shared
 			if (object.ReferenceEquals(m1, m2))
 				return true;
 
-			if (object.ReferenceEquals(m1, null))
+			if (m1 is null)
 				return false;
-			if (object.ReferenceEquals(m2, null))
+			if (m2 is null)
 				return false;
 
 			if (m1.RowCount != m2.RowCount || m1.ColumnCount != m2.ColumnCount)
@@ -367,9 +368,25 @@ namespace ArgusPaintNet.Shared
 		public override bool Equals(object obj)
 		{
 			var m = obj as Matrix;
-			if (m == null)
-				return false;
-			return (this == m);
-		}
-	}
+            return m == null ? false : this == m;
+        }
+
+        public override int GetHashCode()
+        {
+            // Overridden Equals() is based on contents of matrix....
+            // But, overriding HashCode() on a mutable reference type can be ... unexpected.
+            int hashCode = this.RowCount.GetHashCode() ^ this.ColumnCount.GetHashCode();
+            int rowCount = this.RowCount;
+            int columnCount = this.ColumnCount;
+            for (int row = 0; row < rowCount; row++)
+            {
+                for (int col = 0; col < this.ColumnCount; col++)
+                {
+                    hashCode ^= this[row, col].GetHashCode();
+                }
+            }
+            return hashCode;
+        }
+
+    }
 }
