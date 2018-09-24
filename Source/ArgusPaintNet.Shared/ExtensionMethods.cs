@@ -119,13 +119,15 @@ namespace ArgusPaintNet.Shared
 			});
 
 			n_tot = Math.Max(1, n_tot);
-			var mean = new ArgusColor();
-			mean.R = (byte)Math.Round(r_tot / n_tot + K.R);
-			mean.G = (byte)Math.Round(g_tot / n_tot + K.G);
-			mean.B = (byte)Math.Round(b_tot / n_tot + K.B);
-			mean.A = (byte)Math.Round(a_tot / n_tot + K.A);
+            var mean = new ArgusColor
+            {
+                R = (byte)Math.Round(r_tot / n_tot + K.R),
+                G = (byte)Math.Round(g_tot / n_tot + K.G),
+                B = (byte)Math.Round(b_tot / n_tot + K.B),
+                A = (byte)Math.Round(a_tot / n_tot + K.A)
+            };
 
-			double devR = Math.Round(Math.Sqrt((r2_tot - (r_tot * r_tot / n_tot)) / n_tot));
+            double devR = Math.Round(Math.Sqrt((r2_tot - (r_tot * r_tot / n_tot)) / n_tot));
 			double devG = Math.Round(Math.Sqrt((g2_tot - (g_tot * g_tot / n_tot)) / n_tot));
 			double devB = Math.Round(Math.Sqrt((b2_tot - (b_tot * b_tot / n_tot)) / n_tot));
 			double devA = Math.Round(Math.Sqrt((a2_tot - (a_tot * a_tot / n_tot)) / n_tot));

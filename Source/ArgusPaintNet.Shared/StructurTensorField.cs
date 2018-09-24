@@ -70,10 +70,12 @@ namespace ArgusPaintNet.Shared
 		public TensorCharacteristics GetCharacteristics()
 		{
 			Pair<float, float> evs = this.GetEigenvalues();
-			var RetVal = new TensorCharacteristics();
-			RetVal.MinEigenvalue = evs.First;
-			RetVal.MaxEigenvalue = evs.Second;
-			VectorFloat vec = this.GetEigenvector(RetVal.MaxEigenvalue);
+            var RetVal = new TensorCharacteristics
+            {
+                MinEigenvalue = evs.First,
+                MaxEigenvalue = evs.Second
+            };
+            VectorFloat vec = this.GetEigenvector(RetVal.MaxEigenvalue);
 			RetVal.DominantDirection = (float)Math.Atan2(vec.Y, vec.X);
 			return RetVal;
 		}

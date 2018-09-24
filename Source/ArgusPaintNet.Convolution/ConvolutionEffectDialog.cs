@@ -242,18 +242,22 @@ namespace ArgusPaintNet.Convolution
 
 		private void tsmiLoadPresets_Click(object sender, EventArgs e)
 		{
-			var ofd = new OpenFileDialog();
-			ofd.Filter = "Convolution Presets (*.xml)|*.xml";
-			if (ofd.ShowDialog() != DialogResult.OK)
+            var ofd = new OpenFileDialog
+            {
+                Filter = "Convolution Presets (*.xml)|*.xml"
+            };
+            if (ofd.ShowDialog() != DialogResult.OK)
 				return;
 			this.LoadPresets(ofd.FileName);
 		}
 
 		private void tsmiSavePresets_Click(object sender, EventArgs e)
 		{
-			var sfd = new SaveFileDialog();
-			sfd.Filter = "Convolution Presets (*.xml)|*.xml";
-			if (sfd.ShowDialog() != DialogResult.OK)
+            var sfd = new SaveFileDialog
+            {
+                Filter = "Convolution Presets (*.xml)|*.xml"
+            };
+            if (sfd.ShowDialog() != DialogResult.OK)
 				return;
 			Preset.SaveToFile(sfd.FileName, this._dictPresets.ToPresets());
 		}

@@ -29,9 +29,11 @@ namespace ArgusPaintNet.Shared
 
 		public static string Show(string text, string caption)
 		{
-			var inpBox = new InputBox();
-			inpBox.Text = caption;
-			inpBox.lText.Text = text;
+            var inpBox = new InputBox
+            {
+                Text = caption
+            };
+            inpBox.lText.Text = text;
 			if (inpBox.ShowDialog() == DialogResult.OK)
 				return inpBox.tbInput.Text;
 			return null;

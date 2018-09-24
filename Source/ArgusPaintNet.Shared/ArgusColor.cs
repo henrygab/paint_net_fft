@@ -214,9 +214,11 @@ namespace ArgusPaintNet.Shared
 			if (a_f == 0)
 				return new ArgusColor();
 
-			var RetVal = new ArgusColor();
-			RetVal.A = (byte)Math.Round(a_f * 255);
-			if (background.A < 255)
+            var RetVal = new ArgusColor
+            {
+                A = (byte)Math.Round(a_f * 255)
+            };
+            if (background.A < 255)
 			{
 				double a = (blend.A / 255.0) * a_f;
 				double a_b = (1 - a_f) * (background.A / 255.0) / a_f;
